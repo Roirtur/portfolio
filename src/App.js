@@ -1,9 +1,11 @@
 import './App.css';
 import { HashRouter, Routes, Route } from 'react-router-dom';
+import { LanguageProvider } from './Components/LanguageContext';
 import Home from './Pages/Home';
 import Profil from './Pages/Profil';
 import Test from './Pages/test';
-import { LanguageProvider } from './Components/LanguageContext';
+import Contact from './Pages/Contact';
+import Portfolio from './Pages/Portfolio';
 
 function App() {
   return (
@@ -13,6 +15,8 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path="/profil" element={<Profil/>} />
         <Route path="/test" element={<Test/>} />
+        <Route path="/contact" element={<Contact/>} />
+        <Route path="/portfolio" element={<Portfolio/>} />
       </Routes>
     </HashRouter>
     </LanguageProvider>

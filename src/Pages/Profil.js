@@ -9,7 +9,7 @@ const Profil = () => {
 
   return (
     <div>
-        <NavigationBar />
+      <NavigationBar />
       Profil <FontAwesomeIcon icon={faShieldHalved} />
       {language === 'fr' ? 'Bonjour' : 'Hello'}
     </div>

@@ -1,0 +1,48 @@
+@keyframes bounce {
+    0% {
+        transform: translateX(3%);
+    }
+    50% {
+        transform: translateX(-5%);
+    }
+    100% {
+        transform: translateX(3%);
+    }
+}
+
+.bounce-animation {
+animation: bounce 2s ease infinite;
+}
+
+.bubble {
+	position: relative;
+	border-radius: .4em;
+}
+
+.bubble:before {
+    content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-left-color: rgb(148 163 184);
+	border-right: 0;
+	margin-top: -8px;
+	margin-right: -10px;
+}
+
+.bubble:after {
+	content: '';
+	position: absolute;
+	right: 0;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border: 10px solid transparent;
+	border-left-color: white;
+	border-right: 0;
+	margin-top: -9px;
+	margin-right: -9px;
+}
