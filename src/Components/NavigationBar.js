@@ -21,34 +21,41 @@ const NavigationBar = () => {
                     <div className={`absolute bg-gray-300 h-full w-1/2 transition-all duration-500 rounded ${language === "en" ? 'left-0' : 'left-1/2'}`}/>
                 </div>
 
-                <div class="absolute inset-0 p-5 mt-5">
-                    <NavLink to="/">
-                        <div class="rounded p-5 my-5 px-15 shadow-gray-400 shadow-sm duration-300 hover:bg-gray-300 hover:shadow-white">
-                            {language === "en" ? "Home" : "Accueil"}
-                        </div>
-                    </NavLink>
-                    <NavLink to="/profil">
-                        <div class="rounded p-5 my-5 px-15 shadow-gray-400 shadow-sm duration-300 hover:bg-gray-300 hover:shadow-white">
-                            Profil{language === "en" ? "e" : ""}
-                        </div>
-                    </NavLink>
-                    <NavLink to="/contact">
-                        <div class="rounded p-5 my-5 px-15 shadow-gray-400 shadow-sm duration-300 hover:bg-gray-300 hover:shadow-white">
-                            Contact
-                        </div>
-                    </NavLink>
-                    <NavLink to="/portfolio">
-                        <div class="rounded p-5 my-5 px-15 shadow-gray-400 shadow-sm duration-300 hover:bg-gray-300 hover:shadow-white">
-                            Portfolio
-                        </div>
-                    </NavLink>
-                    <NavLink to="/test">
-                        <div class="rounded p-5 my-5 px-15 shadow-gray-400 shadow-sm duration-300 hover:bg-gray-300 hover:shadow-white">
-                            Test
-                        </div>
-                    </NavLink>
+                <div>
+                    <div class="absolute inset-0 p-5 mt-5">
+                        <NavLink to="/">
+                            <div class="rounded p-5 my-5 px-15 shadow-gray-400 shadow-sm duration-300 hover:bg-gray-300 hover:shadow-white">
+                                {language === "en" ? "Home" : "Accueil"}
+                            </div>
+                        </NavLink>
+                        <NavLink to="/profil">
+                            <div class="rounded p-5 my-5 px-15 shadow-gray-400 shadow-sm duration-300 hover:bg-gray-300 hover:shadow-white">
+                                {language === "en" ? "Who am I ?" : "Qui suis-je ?"}
+                            </div>
+                        </NavLink>
+                        <NavLink to="/skills">
+                            <div class="rounded p-5 my-5 px-15 shadow-gray-400 shadow-sm duration-300 hover:bg-gray-300 hover:shadow-white">
+                                {language === "en" ? "Skillset" : "Compétences"}
+                            </div>
+                        </NavLink>
+                        <NavLink to="/portfolio">
+                            <div class="rounded p-5 my-5 px-15 shadow-gray-400 shadow-sm duration-300 hover:bg-gray-300 hover:shadow-white">
+                                Portfolio
+                            </div>
+                        </NavLink>
+                        <NavLink to="/contact">
+                            <div class="rounded p-5 my-5 px-15 shadow-gray-400 shadow-sm duration-300 hover:bg-gray-300 hover:shadow-white">
+                            {language === "en" ? "Contact me" : "Me contacter"}
+                            </div>
+                        </NavLink>
+                        <NavLink to="/test">
+                            <div class="rounded p-5 my-5 px-15 shadow-gray-400 shadow-sm duration-300 hover:bg-gray-300 hover:shadow-white">
+                                Test
+                            </div>
+                        </NavLink>
+                    </div>
                 </div>
-
+                
                 <div class="absolute bottom-0 h-auto w-full">
                     <div class="relative flex justify-end">
                         <div class="flex items-center w-full justify-end">

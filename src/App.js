@@ -6,6 +6,7 @@ import Profil from './Pages/Profil';
 import Test from './Pages/test';
 import Contact from './Pages/Contact';
 import Portfolio from './Pages/Portfolio';
+import Skills from './Pages/Skills';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/test" element={<Test/>} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/portfolio" element={<Portfolio/>} />
+        <Route path="/skills" element={<Skills/>} />
       </Routes>
     </HashRouter>
     </LanguageProvider>
