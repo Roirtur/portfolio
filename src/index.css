@@ -1,15 +1,19 @@
 @import './Styles/NavigationBar.css';
+@import './Styles/Home.css';
+@import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Monoton&family=Rubik+Glitch&display=swap');
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.Monoton {
+  font-family: 'Monoton', cursive;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.AlfaSlabOne {
+  font-family: 'Alfa Slab One', cursive;
+}
+
+.Glitch {
+  font-family: 'Rubik Glitch', sans-serif;
+}
+
+.container {
+  overflow-x: hidden;
 }

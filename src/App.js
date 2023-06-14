@@ -7,18 +7,20 @@ import Test from './Pages/test';
 import Contact from './Pages/Contact';
 import Portfolio from './Pages/Portfolio';
 import Skills from './Pages/Skills';
+import Situation from './Pages/Situation';
 
 function App() {
   return (
     <LanguageProvider>
     <HashRouter>
       <Routes>
-        <Route path="/" element={<Home/>} />
+        <Route path="*" element={<Home/>} />
         <Route path="/profil" element={<Profil/>} />
         <Route path="/test" element={<Test/>} />
         <Route path="/contact" element={<Contact/>} />
         <Route path="/portfolio" element={<Portfolio/>} />
         <Route path="/skills" element={<Skills/>} />
+        <Route path="/situation" element={<Situation/>} />
       </Routes>
     </HashRouter>
     </LanguageProvider>
