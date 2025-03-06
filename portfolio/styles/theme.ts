@@ -1,6 +1,19 @@
 import { createTheme } from "@mui/material/styles";
+import localFont from 'next/font/local';
+
+// Define the font
+const myCustomFont = localFont({
+  src: '../public/fonts/ClashDisplay-Variable.ttf', // Path to the font file
+  display: 'swap', // Improves rendering performance
+});
 
 const theme = createTheme({
+    typography: {
+        fontFamily: `${myCustomFont.style.fontFamily}, Arial, sans-serif`, // Use the custom font variable
+        fontWeightBold: 700, // Bold font weight
+        fontWeightMedium: 300, // Extra bold font weight
+        fontWeightRegular: 400, // Regular font weight
+    },
     palette: {
         primary: {
             main: "#fff", // Cool blue primary color
@@ -21,6 +34,7 @@ const theme = createTheme({
                 body: {
                     backgroundColor: "#C8C2CF", // Background color for body
                     color: "#101214", // Text color for body
+                    fontFamily: "'Roboto', sans-serif", // Apply the custom font to the body
                 },
             },
         },

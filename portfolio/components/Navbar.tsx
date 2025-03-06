@@ -55,6 +55,40 @@ export default function Navbar() {
               <Box className="lb corner vertical" />
             </Box>
             <Box className="revert-colors" />
+            <Typography className="text">Home</Typography>
+          </Box>
+        </Link>
+
+        <Link href={"/works"}>
+          <Box
+            sx={{
+              position: "relative",
+              px: 2,
+              py: 0.5,
+              pointerEvents: currentPath === "/works" ? "none" : "auto",
+            }}
+            className={`nav-item ${currentPath === "/works" ? "active" : ""}`}
+          >
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                display: "flex",
+              }}
+              className="corner-container">
+              <Box className="tr corner horizontal" />
+              <Box className="rt corner vertical" />
+              <Box className="tl corner horizontal" />
+              <Box className="lt corner vertical" />
+              <Box className="br corner horizontal" />
+              <Box className="rb corner vertical" />
+              <Box className="bl corner horizontal" />
+              <Box className="lb corner vertical" />
+            </Box>
+            <Box className="revert-colors" />
             <Typography className="text">Works</Typography>
           </Box>
         </Link>
@@ -65,7 +99,7 @@ export default function Navbar() {
               position: "relative",
               px: 2,
               py: 0.5,
-              // pointerEvents: currentPath === "/contact" ? "none" : "auto",
+              pointerEvents: currentPath === "/contact" ? "none" : "auto",
             }}
             className={`nav-item ${currentPath === "/contact" ? "active" : ""}`}
           >
