@@ -1,0 +1,131 @@
+.corner.vertical,
+.corner.horizontal {
+    position: absolute;
+    background-color: #101214;
+    z-index: 1000;
+    transition: all 0.3s cubic-bezier(.52, .14, .45, .97);
+}
+
+.corner.vertical {
+    width: 1px;
+    height: 0;
+}
+
+.corner.horizontal {
+    width: 0;
+    height: 1px;
+}
+
+.horizontal,
+.vertical {
+    /* transition-duration: 2s; */
+    transition: width 0.3s cubic-bezier(.52, .14, .45, .97) 0.1s, height 0.3s cubic-bezier(.52, .14, .45, .97) 0.1s !important;
+}
+
+.nav-item:hover .vertical,
+.nav-item:hover .horizontal {
+    transition-duration: 0.5s;
+    transition-timing-function: cubic-bezier(.33, 1, .68, 1);
+    filter: invert(1);
+    transition-delay: 0.3s;
+    transition: width 0.3s cubic-bezier(.52, .14, .45, .97) 0.15s, height 0.3s cubic-bezier(.52, .14, .45, .97) 0.15s !important;
+}
+
+.nav-item:hover .vertical {
+    height: 6px;
+}
+
+.nav-item:hover .horizontal {
+    width: 6px;
+}
+
+.tr,
+.rt {
+    top: 0;
+    right: 0;
+}
+
+.tl,
+.lt {
+    top: 0;
+    left: 0;
+}
+
+.br,
+.rb {
+    bottom: 0;
+    right: 0;
+}
+
+.bl,
+.lb {
+    bottom: 0;
+    left: 0;
+}
+
+.nav-item {
+    filter: invert(0);
+    transition: filter 0.3s cubic-bezier(.52, .14, .45, .97);
+}
+
+.nav-item:hover .text {
+    filter: invert(1);
+    transition-delay: 0.1s;
+    transition-timing-function: cubic-bezier(.33, 1, .68, 1);
+}
+
+.text {
+    transition: all 0.3s cubic-bezier(.52, .14, .45, .97);
+    font-family: "IBM Plex Mono", monospace;
+}
+
+.revert-colors {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background-color: #101214;
+    transition: width 0s cubic-bezier(.33, 1, .68, 1) 0.3s, height 0.3s cubic-bezier(.33, 1, .68, 1), transform 0.3s cubic-bezier(.33, 1, .68, 1) 0.3s;
+    transform: translate(-50%, -50%);
+}
+
+.nav-item:hover .revert-colors {
+    width: 115%;
+    height: 145%;
+    transition: width 0.3s cubic-bezier(.33, 1, .68, 1) 0s, height 0s cubic-bezier(.33, 1, .68, 1)
+}
+
+.active .revert-colors {
+    width: 115%;
+    height: 145%;
+}
+
+.active .vertical,
+.active .horizontal {
+    filter: invert(1);
+}
+
+.active .vertical {
+    height: 6px;
+}
+
+.active .horizontal {
+    width: 6px;
+}
+
+.active .text {
+    filter: invert(1);
+}
+
+.corner-container {
+    transition: all 0.4s cubic-bezier(.52, .14, .45, .97);
+    z-index: 1000;
+}
+
+.nav-item:active .corner-container {
+    width: 80%;
+    height: 80%;
+    transform: translate(10%, 10%);
+    transition: width 0.05s cubic-bezier(.52, .14, .45, .97), height 0.05s cubic-bezier(.52, .14, .45, .97), transform 0.05s cubic-bezier(.52, .14, .45, .97);
+}

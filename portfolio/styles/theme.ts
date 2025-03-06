@@ -19,33 +19,37 @@ const theme = createTheme({
         MuiCssBaseline: {
             styleOverrides: {
                 body: {
-                    backgroundColor: "#222831", // Background color for body
-                    color: "#ffffff", // Text color for body
+                    backgroundColor: "#C8C2CF", // Background color for body
+                    color: "#101214", // Text color for body
                 },
             },
         },
         MuiIconButton: {
             styleOverrides: {
                 root: {
-                    backgroundColor: "#393E46", // Default background color for IconButton
-                    color: "#EEE", // Default text color for IconButton
-                    transition: "all 0.2s ease-in-out", // Smooth transition
+                    backgroundColor: "#CC2B52", // Default background color for IconButton
+                    color: "#E8BCB9", // Default text color for IconButton
+                    transition: "all 0.2s", // Smooth transition
                     '&.active': {
                         color: "#FFD369", // Active IconButton text color
                         fontWeight: "bold", // Active IconButton font weight
-                        backgroundColor: "#2F363F",
+                        backgroundColor: "#AF1740",
                         transform: "scale(1.1)", // Slightly enlarge the IconButton when active
                         '& .MuiSvgIcon-root': {
-                            filter: "drop-shadow(0px 2px 0px rgb(222, 20, 20, 1))", // Add a drop shadow to the icon
+                            filter: "drop-shadow(4px 4px 0px rgb(20, 20, 20, 1))", // Add a larger drop shadow to the icon
                         },
                     },
                     '&:hover': {
-                        backgroundColor: "#2F363F", // Background color on hover with opacity
+                        backgroundColor: "#AF1740", // Background color on hover with opacity
                         color: "#FFD369", // Text color on hover
                         transform: "scale(1.1)", // Slightly enlarge the IconButton when active
                         '& .MuiSvgIcon-root': {
-                            filter: "drop-shadow(0px 2px 0px rgb(222, 20, 20, 1))", // Add a drop shadow to the icon
+                            filter: "drop-shadow(4px 4px 0px rgb(20, 20, 20, 1))", // Add a drop shadow to the icon
                         },
+                    },
+                    '& .MuiSvgIcon-root': {
+                        transition: "all 0.1s", // Smooth transition
+                        filter: "drop-shadow(2px 2px 0px rgb(20, 20, 20, 1))", // Add a larger drop shadow to the icon
                     },
                     fontWeight: "normal", // Non-active IconButton font weight
                 },

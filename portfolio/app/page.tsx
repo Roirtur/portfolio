@@ -1,9 +1,8 @@
-import styles from "@/styles/page.module.css";
+import { Box } from "@mui/material";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      
-    </div>
+      <Box>
+      </Box>
   );
 }

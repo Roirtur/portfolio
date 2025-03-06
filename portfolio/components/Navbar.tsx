@@ -1,22 +1,14 @@
 "use client";
 
 import React from "react";
-import { ThemeProvider, Box, IconButton } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import InfoIcon from "@mui/icons-material/Info";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
-import theme from "../styles/theme";
+import { ThemeProvider, Box, Typography } from "@mui/material";
+import theme from "@/styles/theme";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import "@/styles/navbar/style.css";
 
 export default function Navbar() {
   const currentPath = usePathname();
-
-  const navItems = [
-    { label: "Home", path: "/", icon: <HomeIcon sx={{ fontSize: "2.4rem" }} /> },
-    { label: "About", path: "/about", icon: <InfoIcon sx={{ fontSize: "2.4rem" }} /> },
-    { label: "Contact", path: "/contact", icon: <ContactMailIcon sx={{ fontSize: "2.4rem" }} /> },
-  ];
 
   return (
     <ThemeProvider theme={theme}>
@@ -26,27 +18,80 @@ export default function Navbar() {
           right: 0,
           top: 0,
           display: "flex",
-          flexDirection: "column",
+          flexDirection: "row",
+          gap: 6,
           alignItems: "flex-end",
-          gap: 3,
-          p: 4,
+          p: 2,
+          pr: 4,
         }}
       >
-        {navItems.map((item) => (
-          <Link key={item.path} href={item.path} passHref>
-            <IconButton
-              className={currentPath === item.path ? "active" : ""}
-              size="large"
+        <Link href={"/"}>
+          <Box
+            sx={{
+              position: "relative",
+              px: 2,
+              py: 0.5,
+              pointerEvents: currentPath === "/" ? "none" : "auto",
+            }}
+            className={`nav-item ${currentPath === "/" ? "active" : ""}`}
+          >
+            <Box
               sx={{
-                p: 1.5,
-                boxShadow: 2,
-                fontSize: currentPath === item.path ? "2rem" : "1.5rem"
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                display: "flex",
               }}
-            >
-              {item.icon}
-            </IconButton>
-          </Link>
-        ))}
+              className="corner-container">
+              <Box className="tr corner horizontal" />
+              <Box className="rt corner vertical" />
+              <Box className="tl corner horizontal" />
+              <Box className="lt corner vertical" />
+              <Box className="br corner horizontal" />
+              <Box className="rb corner vertical" />
+              <Box className="bl corner horizontal" />
+              <Box className="lb corner vertical" />
+            </Box>
+            <Box className="revert-colors" />
+            <Typography className="text">Works</Typography>
+          </Box>
+        </Link>
+
+        <Link href={"/contact"}>
+          <Box
+            sx={{
+              position: "relative",
+              px: 2,
+              py: 0.5,
+              // pointerEvents: currentPath === "/contact" ? "none" : "auto",
+            }}
+            className={`nav-item ${currentPath === "/contact" ? "active" : ""}`}
+          >
+            <Box
+              sx={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "100%",
+                display: "flex",
+              }}
+              className="corner-container">
+              <Box className="tr corner horizontal" />
+              <Box className="rt corner vertical" />
+              <Box className="tl corner horizontal" />
+              <Box className="lt corner vertical" />
+              <Box className="br corner horizontal" />
+              <Box className="rb corner vertical" />
+              <Box className="bl corner horizontal" />
+              <Box className="lb corner vertical" />
+            </Box>
+            <Box className="revert-colors" />
+            <Typography className="text">Contact</Typography>
+          </Box>
+        </Link>
       </Box>
     </ThemeProvider>
   );
