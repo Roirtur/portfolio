@@ -2,30 +2,35 @@ import { createTheme } from "@mui/material/styles";
 import localFont from 'next/font/local';
 
 // Define the font
-const myCustomFont = localFont({
-  src: '../public/fonts/ClashDisplay-Variable.ttf', // Path to the font file
-  display: 'swap', // Improves rendering performance
+export const ClashDisplayFont = localFont({
+    src: '../public/fonts/ClashDisplay-Variable.ttf', // Path to the font file
+    display: 'swap', // Improves rendering performance
+});
+
+export const MilkerFont = localFont({
+    src: '../public/fonts/Milker.otf', // Path to the another font file
+    display: 'swap', // Improves rendering performance
 });
 
 const theme = createTheme({
     typography: {
-        fontFamily: `${myCustomFont.style.fontFamily}, Arial, sans-serif`, // Use the custom font variable
+        fontFamily: `${ClashDisplayFont.style.fontFamily}, Arial, sans-serif`, // Use the custom font variable
         fontWeightBold: 700, // Bold font weight
         fontWeightMedium: 300, // Extra bold font weight
         fontWeightRegular: 400, // Regular font weight
     },
     palette: {
         primary: {
-            main: "#fff", // Cool blue primary color
+            main: "#fff",
         },
         secondary: {
-            main: "#fff", // Cool purple secondary color
+            main: "#fff",
         },
         background: {
-            default: "#fff", // Dark background color
+            default: "#fff",
         },
         text: {
-            primary: "#ffffff", // White text color
+            primary: "#ffffff",
         },
     },
     components: {
@@ -35,6 +40,7 @@ const theme = createTheme({
                     backgroundColor: "#C8C2CF", // Background color for body
                     color: "#101214", // Text color for body
                     fontFamily: "'Roboto', sans-serif", // Apply the custom font to the body
+                    overflowX: "hidden", // Hide horizontal overflow
                 },
             },
         },

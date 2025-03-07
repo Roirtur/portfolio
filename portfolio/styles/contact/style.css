@@ -1,0 +1,9 @@
+/* .main-box-contact {
+    background-color: pink;
+    opacity: 0;
+    transition: opacity 1.5s ease;
+}
+
+.main-box-contact.loaded {
+    opacity: 1;
+} */

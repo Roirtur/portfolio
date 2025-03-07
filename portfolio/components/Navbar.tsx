@@ -1,14 +1,30 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { ThemeProvider, Box, Typography } from "@mui/material";
 import theme from "@/styles/theme";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import "@/styles/navbar/style.css";
+import RotatingDiv from "./Rotate";
 
-export default function Navbar() {
-  const currentPath = usePathname();
+interface NavbarProps {
+  onRouteChange: (route: string) => void;
+}
+
+export default function Navbar({ onRouteChange }: NavbarProps) {
+  const initialPath = usePathname();
+  const [currentPath, setCurrentPath] = useState(initialPath);
+
+  useEffect(() => {
+    setCurrentPath(initialPath);
+  }, [initialPath]);
+
+  const handleRouteChange = (route: string) => {
+    if (route === currentPath) return;
+    setCurrentPath(route);
+    onRouteChange(route);
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -23,15 +39,18 @@ export default function Navbar() {
           alignItems: "flex-end",
           p: 2,
           pr: 4,
+          zIndex: 999,
         }}
+        style={{ mixBlendMode: "exclusion" }}
       >
-        <Link href={"/"}>
+
+        <RotatingDiv>
           <Box
+            onClick={() => handleRouteChange("/")}
             sx={{
               position: "relative",
               px: 2,
-              py: 0.5,
-              pointerEvents: currentPath === "/" ? "none" : "auto",
+              cursor: "pointer",
             }}
             className={`nav-item ${currentPath === "/" ? "active" : ""}`}
           >
@@ -44,7 +63,8 @@ export default function Navbar() {
                 height: "100%",
                 display: "flex",
               }}
-              className="corner-container">
+              className="corner-container"
+            >
               <Box className="tr corner horizontal" />
               <Box className="rt corner vertical" />
               <Box className="tl corner horizontal" />
@@ -55,17 +75,18 @@ export default function Navbar() {
               <Box className="lb corner vertical" />
             </Box>
             <Box className="revert-colors" />
-            <Typography className="text">Home</Typography>
+            <Typography className="text" sx={{ userSelect: "none" }}>
+              Home
+            </Typography>
           </Box>
-        </Link>
-
-        <Link href={"/works"}>
+        </RotatingDiv>
+        <RotatingDiv>
           <Box
+            onClick={() => handleRouteChange("/works")}
             sx={{
               position: "relative",
               px: 2,
-              py: 0.5,
-              pointerEvents: currentPath === "/works" ? "none" : "auto",
+              cursor: "pointer",
             }}
             className={`nav-item ${currentPath === "/works" ? "active" : ""}`}
           >
@@ -78,7 +99,8 @@ export default function Navbar() {
                 height: "100%",
                 display: "flex",
               }}
-              className="corner-container">
+              className="corner-container"
+            >
               <Box className="tr corner horizontal" />
               <Box className="rt corner vertical" />
               <Box className="tl corner horizontal" />
@@ -89,17 +111,20 @@ export default function Navbar() {
               <Box className="lb corner vertical" />
             </Box>
             <Box className="revert-colors" />
-            <Typography className="text">Works</Typography>
+            <Typography className="text" sx={{ userSelect: "none" }}>
+              Works
+            </Typography>
           </Box>
-        </Link>
 
-        <Link href={"/contact"}>
+        </RotatingDiv>
+
+        <RotatingDiv>
           <Box
+            onClick={() => handleRouteChange("/contact")}
             sx={{
               position: "relative",
               px: 2,
-              py: 0.5,
-              pointerEvents: currentPath === "/contact" ? "none" : "auto",
+              cursor: "pointer",
             }}
             className={`nav-item ${currentPath === "/contact" ? "active" : ""}`}
           >
@@ -112,7 +137,8 @@ export default function Navbar() {
                 height: "100%",
                 display: "flex",
               }}
-              className="corner-container">
+              className="corner-container"
+            >
               <Box className="tr corner horizontal" />
               <Box className="rt corner vertical" />
               <Box className="tl corner horizontal" />
@@ -123,9 +149,11 @@ export default function Navbar() {
               <Box className="lb corner vertical" />
             </Box>
             <Box className="revert-colors" />
-            <Typography className="text">Contact</Typography>
+            <Typography className="text" sx={{ userSelect: "none" }}>
+              Contact
+            </Typography>
           </Box>
-        </Link>
+        </RotatingDiv>
       </Box>
     </ThemeProvider>
   );

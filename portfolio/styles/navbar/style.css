@@ -68,17 +68,6 @@
     transition: filter 0.3s cubic-bezier(.52, .14, .45, .97);
 }
 
-.nav-item:hover .text {
-    filter: invert(1);
-    transition-delay: 0.1s;
-    transition-timing-function: cubic-bezier(.33, 1, .68, 1);
-}
-
-.text {
-    transition: all 0.3s cubic-bezier(.52, .14, .45, .97);
-    font-family: "IBM Plex Mono", monospace;
-}
-
 .revert-colors {
     position: absolute;
     top: 50%;
@@ -101,11 +90,6 @@
     height: calc(100% + 15px);
 }
 
-.active .vertical,
-.active .horizontal {
-    filter: invert(1);
-}
-
 .active .vertical {
     height: 6px;
 }
@@ -114,18 +98,40 @@
     width: 6px;
 }
 
-.active .text {
-    filter: invert(1);
-}
-
 .corner-container {
     transition: all 0.4s cubic-bezier(.52, .14, .45, .97);
     z-index: 1000;
 }
 
 .nav-item:active .corner-container {
-    width: 80%;
-    height: 80%;
-    transform: translate(10%, 10%);
+    transform: scale(0.8, 0.8);
     transition: width 0.05s cubic-bezier(.52, .14, .45, .97), height 0.05s cubic-bezier(.52, .14, .45, .97), transform 0.05s cubic-bezier(.52, .14, .45, .97);
+}
+
+.nav-item .text {
+    transition: color 0s;
+    color: #C8C2CF;
+    z-index: 1000;
+    position: relative;
+}
+
+.nav-item:hover .text,
+.nav-item.active .text {
+    color: #101214;
+    transition-delay: 0s;
+    filter: invert(1);
+}
+
+.nav-item .text {
+    transition: color 0s;
+    color: #C8C2CF;
+}
+
+.nav-item:hover .vertical,
+.nav-item.active .vertical,
+.nav-item:hover .horizontal,
+.nav-item.active .horizontal {
+    filter: invert(1);
+    background-color: #101214;
+    transition-delay: 0s;
 }
