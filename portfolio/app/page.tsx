@@ -5,8 +5,9 @@ import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import "@/styles/home/style.css"
-import { MilkerFont } from "@/styles/theme";
-import RotatingDiv from "@/components/Rotate";
+import { MilkerFont, SofiaProFont } from "@/styles/theme";
+import HomeBackground from "@/components/home/HomeBackground";
+import { ReactTyped } from "react-typed";
 
 export default function Home() {
   const [changingRoute, setChangingRoute] = useState<boolean>(false);
@@ -35,12 +36,12 @@ export default function Home() {
   const nameAnimation = {
     hidden: { y: -200, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut", delay: 0.2 } },
-    exit: { y: -200, opacity: 0, transition: { duration: 0.5, ease: "easeIn"} },
+    exit: { y: -200, opacity: 0, transition: { duration: 0.5, ease: "easeIn" } },
   };
   const name2Animation = {
     hidden: { x: -200, opacity: 0 },
     visible: { x: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut", delay: 0.2 } },
-    exit: { x: -200, opacity: 0, transition: { duration: 0.5, ease: "easeIn"} },
+    exit: { x: -200, opacity: 0, transition: { duration: 0.5, ease: "easeIn" } },
   };
 
   const headerAnimation = {
@@ -49,11 +50,10 @@ export default function Home() {
     exit: { y: -200, opacity: 0, transition: { duration: 0.5, ease: "easeIn" } },
   };
 
-
   return (
-    <Box sx={{ display: "flex", justifyContent: "start", width: "100vw", flexDirection: "column", alignItems: "start" }}
+    <Box sx={{ display: "flex", justifyContent: "start", width: "100vw", flexDirection: "column", alignItems: "start", overflow: "hidden" }}
       className={`main-box-home`}>
-
+      <HomeBackground changingRoute={changingRoute} />
       <motion.div
         key="name"
         initial="hidden"
@@ -65,6 +65,7 @@ export default function Home() {
           fontWeight: "fontWeightRegular",
           fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
           display: "flex",
+          flexDirection: "row",
           alignItems: "flex-end",
           gap: 2,
           height: "20vh",
@@ -85,23 +86,53 @@ export default function Home() {
               sx={{
                 fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
                 lineHeight: 0.6,
-                zIndex: 1,
                 fontSize: "8rem",
               }}
               className={`home-title`}
             >
-              Macdonald
+              M<span style={{
+                color: "#0f402b",
+                textShadow: "2px 2px 0 #f1c2d6, 2px 2px 0 #f1c2d6, 2px -2px 0 #f1c2d6, -2px 2px 0 #f1c2d6, -2px -2px 0 #f1c2d6, 2px 0px 0 #f1c2d6, 0px 2px 0 #f1c2d6, -2px 0px 0 #f1c2d6, 0px -2px 0 #f1c2d6",
+              }}>a</span>cdonald
             </Typography>
           </motion.div>
         </Box>
       </motion.div>
-      <Box>
+      <Box sx={{
+        display: "flex",
+        flexDirection: "row",
+        flexWrap: "wrap",
+        "& > *": {
+          flex: "0 0 auto",
+        },
+        "& > :nth-of-type(1), & > :nth-of-type(2), & > :nth-of-type(3), & > :nth-of-type(4)": {
+          height: "54.1vh",
+        },
+        "& > :nth-of-type(5), & > :nth-of-type(6), & > :nth-of-type(7), & > :nth-of-type(8)": {
+          height: "calc(100vh - 54.1vh - 20vh)",
+        },
+        "& > :nth-of-type(1), & > :nth-of-type(5)": {
+          width: "140px",
+        },
+        "& > :nth-of-type(2), & > :nth-of-type(6)": {
+          width: "133px",
+        },
+        "& > :nth-of-type(3), & > :nth-of-type(7)": {
+          width: "680px",
+        },
+        "& > :nth-of-type(4), & > :nth-of-type(8)": {
+          width: "calc(100vw - 953px)",
+        },
+      }}>
+        <Box>
+          Nothing here
+        </Box>
         <motion.div
           key="fname"
           initial="hidden"
           animate={changingRoute ? "exit" : "visible"}
           variants={name2Animation}
-          style={{ mixBlendMode: "difference", color: "#E8E2F6", writingMode: "vertical-rl", textOrientation: "upright" }}
+          style={{ color: "#f1c2d6", writingMode: "vertical-rl", textOrientation: "upright" }}
         >
           <Typography
             variant="h1"
@@ -110,15 +141,78 @@ export default function Home() {
               lineHeight: 1,
               zIndex: 1,
               fontSize: "8rem",
-              ml: 18,
               mt: -0.5,
               letterSpacing: "-0.2em", // Adjust the letter spacing to make the gap smaller
+              textShadow: "2px 2px 0 #102F22, 2px 2px 0 #102F22, 2px -2px 0 #102F22, -2px 2px 0 #102F22, -2px -2px 0 #102F22, 2px 0px 0 #102F22, 0px 2px 0 #102F22, -2px 0px 0 #102F22, 0px -2px 0 #102F22",
             }}
             className={`home-title`}
           >
             rthur
           </Typography>
         </motion.div>
+        <motion.div
+          style={{
+            paddingLeft: 60,
+            paddingRight: 60,
+            fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
+            flexDirection: "column",
+            display: "flex",
+            alignItems: "start",
+            justifyContent: "center",
+          }}
+          initial="visible"
+          animate={changingRoute ? "exit" : "visible"}
+          variants={{
+            visible: { opacity: 1 },
+            exit: { opacity: 0, transition: { duration: 0.5, ease: "easeIn" } },
+          }}
+        >
+          <Box sx={{
+            fontSize: "2rem",
+            color: "#f1c2d6",
+            textShadow: "2px 2px 0 #0f402b, 2px 2px 0 #0f402b, 2px -2px 0 #0f402b, -2px 2px 0 #0f402b, -2px -2px 0 #0f402b, 2px 0px 0 #0f402b, 0px 2px 0 #0f402b, -2px 0px 0 #0f402b, 0px -2px 0 #0f402b",
+            mb: 2
+          }}>
+            <ReactTyped
+              strings={["Who am I ?"]}
+              typeSpeed={20}
+              startDelay={500}
+              showCursor={false}
+            />
+          </Box>
+          <Box sx={{
+            fontFamily: `${SofiaProFont.style.fontFamily}, Arial, sans-serif`,
+            fontWeight: "700",
+            fontSize: "1.3rem",
+            textAlign: "justify",
+            lineHeight: 1.4,
+            mb: 2,
+          }}>
+            <ReactTyped
+              strings={[
+                "I am a 21-year-old software engineer currently in my first year of a master's degree at Université de Bordeaux. My interests span computer science, astronomy, and quantum physics, with a strong focus on artificial intelligence. <br /><br /> I am always eager to connect with like-minded individuals and explore new opportunities. Let's create something amazing together!"
+              ]}
+              typeSpeed={0}
+              startDelay={600}
+              showCursor={false}
+            />
+          </Box>
+        </motion.div>
+        <Box>
+          Nothing here
+        </Box>
+        <Box>
+          Nothing here
+        </Box>
+        <Box>
+          Nothing here
+        </Box>
+        <Box>
+          Nothing here
+        </Box>
+        <Box>
+          Nothing here
+        </Box>
       </Box>
     </Box>
   );

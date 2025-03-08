@@ -12,6 +12,14 @@ export const MilkerFont = localFont({
     display: 'swap', // Improves rendering performance
 });
 
+export const SofiaProFont = localFont({
+    src: '../public/fonts/Sofia Pro Regular Az.otf', // Path to the another font file
+    display: 'swap', // Improves rendering performance
+});
+
+//#f1c2d6
+// #102F22
+
 const theme = createTheme({
     typography: {
         fontFamily: `${ClashDisplayFont.style.fontFamily}, Arial, sans-serif`, // Use the custom font variable

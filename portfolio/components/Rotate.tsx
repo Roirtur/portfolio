@@ -26,16 +26,17 @@ const RotatingDiv = ({ children }: RotatingDivProps) => {
             }
         };
 
-
         const handleMouseEnter = () => {
-            window.addEventListener('mousemove', handleMouseMove);
+            if (divRef.current) {
+                divRef.current.addEventListener('mousemove', handleMouseMove);
+            }
         };
 
         const handleMouseLeave = () => {
             if (divRef.current) {
                 divRef.current.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                divRef.current.removeEventListener('mousemove', handleMouseMove);
             }
-            window.removeEventListener('mousemove', handleMouseMove);
         };
 
         if (divRef.current) {
@@ -47,8 +48,8 @@ const RotatingDiv = ({ children }: RotatingDivProps) => {
             if (divRef.current) {
                 divRef.current.removeEventListener('mouseenter', handleMouseEnter);
                 divRef.current.removeEventListener('mouseleave', handleMouseLeave);
+                divRef.current.removeEventListener('mousemove', handleMouseMove);
             }
-            window.removeEventListener('mousemove', handleMouseMove);
         };
     }, []);
 
@@ -65,7 +66,6 @@ const RotatingDiv = ({ children }: RotatingDivProps) => {
                 style={{
                     width: '100%',
                     height: '100%',
-                    transform: 'translateZ(0px)',
                     transition: 'transform 0.1s',
                 }}
                 onMouseEnter={(e) => {

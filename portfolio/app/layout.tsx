@@ -12,7 +12,8 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>) {;
+}>) {
+  ;
   const router = useRouter();
   const pathname = usePathname();
 
@@ -29,7 +30,7 @@ export default function RootLayout({
       if (newRoute !== pathname) {
         router.push(newRoute);
       }
-    }, 400);
+    }, 600);
 
     setRouteChangeTimeout(timeout);
   };
