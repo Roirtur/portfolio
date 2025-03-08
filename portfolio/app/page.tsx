@@ -8,6 +8,7 @@ import "@/styles/home/style.css"
 import { MilkerFont, SofiaProFont } from "@/styles/theme";
 import HomeBackground from "@/components/home/HomeBackground";
 import { ReactTyped } from "react-typed";
+import Socials from "@/components/home/Socials";
 
 export default function Home() {
   const [changingRoute, setChangingRoute] = useState<boolean>(false);
@@ -79,7 +80,7 @@ export default function Home() {
             initial="hidden"
             animate={changingRoute ? "exit" : "visible"}
             variants={nameAnimation}
-            style={{ mixBlendMode: "difference", color: "#E8E2F6" }}
+            style={{ mixBlendMode: "difference", color: "#E8E2F6", userSelect: "none" }}
           >
             <Typography
               variant="h1"
@@ -87,12 +88,14 @@ export default function Home() {
                 fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
                 lineHeight: 0.6,
                 fontSize: "8rem",
+                userSelect: "none",
               }}
               className={`home-title`}
             >
               M<span style={{
                 color: "#0f402b",
                 textShadow: "2px 2px 0 #f1c2d6, 2px 2px 0 #f1c2d6, 2px -2px 0 #f1c2d6, -2px 2px 0 #f1c2d6, -2px -2px 0 #f1c2d6, 2px 0px 0 #f1c2d6, 0px 2px 0 #f1c2d6, -2px 0px 0 #f1c2d6, 0px -2px 0 #f1c2d6",
+                userSelect: "none",
               }}>a</span>cdonald
             </Typography>
           </motion.div>
@@ -125,7 +128,6 @@ export default function Home() {
         },
       }}>
         <Box>
-          Nothing here
         </Box>
         <motion.div
           key="fname"
@@ -144,6 +146,7 @@ export default function Home() {
               mt: -0.5,
               letterSpacing: "-0.2em", // Adjust the letter spacing to make the gap smaller
               textShadow: "2px 2px 0 #102F22, 2px 2px 0 #102F22, 2px -2px 0 #102F22, -2px 2px 0 #102F22, -2px -2px 0 #102F22, 2px 0px 0 #102F22, 0px 2px 0 #102F22, -2px 0px 0 #102F22, 0px -2px 0 #102F22",
+              userSelect: "none", // Make the text unselectable
             }}
             className={`home-title`}
           >
@@ -199,19 +202,15 @@ export default function Home() {
           </Box>
         </motion.div>
         <Box>
-          Nothing here
         </Box>
         <Box>
-          Nothing here
         </Box>
         <Box>
-          Nothing here
         </Box>
         <Box>
-          Nothing here
         </Box>
         <Box>
-          Nothing here
+          <Socials pageChanging={changingRoute} />
         </Box>
       </Box>
     </Box>
