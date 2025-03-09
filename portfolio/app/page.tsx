@@ -76,21 +76,23 @@ export default function Home() {
           pb: 1,
           backgroundColor: "#101214",
           pl: 5,
+          position: "relative",
         }}>
           <motion.div
             key="name"
             initial="hidden"
             animate={changingRoute ? "exit" : "visible"}
             variants={nameAnimation}
-            style={{ mixBlendMode: "difference", color: "#E8E2F6", userSelect: "none" }}
+            style={{ mixBlendMode: "difference", color: "#E8E2F6", userSelect: "none", position: "absolute", left: "2.8%", }}
           >
             <Typography
               variant="h1"
               sx={{
                 fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
-                lineHeight: 0.6,
-                fontSize: "8rem",
+                mb: -2,
+                fontSize: "7rem",
                 userSelect: "none",
+                letterSpacing: 6,
               }}
               className={`home-title`}
             >
@@ -136,17 +138,20 @@ export default function Home() {
           initial="hidden"
           animate={changingRoute ? "exit" : "visible"}
           variants={name2Animation}
-          style={{ color: "#f1c2d6", writingMode: "vertical-rl", textOrientation: "upright" }}
+          style={{ color: "#f1c2d6", writingMode: "vertical-rl", textOrientation: "upright", position: "relative", overflow: "hidden", }}
         >
           <Typography
             variant="h1"
             sx={{
+              position: "absolute",
+              left: "8%",
+              top: 0,
               fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
               lineHeight: 1,
               zIndex: 1,
-              fontSize: "8rem",
-              mt: -0.5,
-              letterSpacing: "-0.2em", // Adjust the letter spacing to make the gap smaller
+              fontSize: "7rem",
+              mt: -3.2,
+              letterSpacing: -42, // Adjust the letter spacing to make the gap smaller
               textShadow: "2px 2px 0 #102F22, 2px 2px 0 #102F22, 2px -2px 0 #102F22, -2px 2px 0 #102F22, -2px -2px 0 #102F22, 2px 0px 0 #102F22, 0px 2px 0 #102F22, -2px 0px 0 #102F22, 0px -2px 0 #102F22",
               userSelect: "none", // Make the text unselectable
             }}
@@ -161,7 +166,10 @@ export default function Home() {
         <Box>
           <Skills pageChanging={changingRoute} />
         </Box>
-        <Box>
+        <Box sx={{ position: "relative", padding: 1, }}>
+          <Typography sx={{ position: "absolute", bottom: 5, left: 10, }}>
+            &copy; {new Date().getFullYear()}
+          </Typography>
         </Box>
         <Box>
         </Box>
