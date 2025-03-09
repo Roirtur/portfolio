@@ -87,7 +87,7 @@ const Skills: React.FC<SkillsProps> = ({ pageChanging }) => {
     return (
         <Box sx={{ position: "relative", height: "100%", width: "100%", }}>
             <Box sx={{ height: 'calc(100% - 2* 20px)', width: 'calc(100% - 2* 40px)', overflowX: 'hidden', overflowY: 'hidden', m: "40px", mb: 0, mt: "20px", pb: 1, }} ref={scrollRef}>
-                <Box sx={{ position: 'absolute', bottom: 20, right: 42, transition: "opacity 0.2s", opacity: showArrow ? 0.9 : 0, zIndex: 1000 }}>
+                <Box sx={{ position: 'absolute', bottom: 20, right: 42, transition: "opacity 0.2s", opacity: showArrow && !pageChanging ? 0.9 : 0, zIndex: 1000 }}>
                     <motion.div
                         animate={{ y: [0, -10, 0] }}
                         transition={{ repeat: Infinity, duration: 1 }}

@@ -11,6 +11,7 @@ import { ReactTyped } from "react-typed";
 import Socials from "@/components/home/Socials";
 import AboutMe from "@/components/home/AboutMe";
 import Skills from "@/components/home/Skills";
+import Education from "@/components/home/Eduaction";
 
 export default function Home() {
   const [changingRoute, setChangingRoute] = useState<boolean>(false);
@@ -178,7 +179,7 @@ export default function Home() {
         <Box>
         </Box>
         <Box>
-          Education
+          <Education pageChanged={changingRoute} />
         </Box>
         <Box>
           <Socials pageChanging={changingRoute} />

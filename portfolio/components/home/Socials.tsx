@@ -53,8 +53,8 @@ const Socials: React.FC<{ pageChanging: boolean }> = ({ pageChanging }) => {
                             target="_blank"
                             rel="noopener noreferrer"
                             sx={{
-                                width: "5vw",
-                                height: "5vw",
+                                width: "4.8vw",
+                                height: "4.8vw",
                                 borderRadius: '50%',
                                 backgroundColor: "#101214",
                                 color: "#C8C2CF",
