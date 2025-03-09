@@ -9,6 +9,8 @@ import { MilkerFont, SofiaProFont } from "@/styles/theme";
 import HomeBackground from "@/components/home/HomeBackground";
 import { ReactTyped } from "react-typed";
 import Socials from "@/components/home/Socials";
+import AboutMe from "@/components/home/AboutMe";
+import Skills from "@/components/home/Skills";
 
 export default function Home() {
   const [changingRoute, setChangingRoute] = useState<boolean>(false);
@@ -153,61 +155,18 @@ export default function Home() {
             rthur
           </Typography>
         </motion.div>
-        <motion.div
-          style={{
-            paddingLeft: 60,
-            paddingRight: 60,
-            fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
-            flexDirection: "column",
-            display: "flex",
-            alignItems: "start",
-            justifyContent: "center",
-          }}
-          initial="visible"
-          animate={changingRoute ? "exit" : "visible"}
-          variants={{
-            visible: { opacity: 1 },
-            exit: { opacity: 0, transition: { duration: 0.5, ease: "easeIn" } },
-          }}
-        >
-          <Box sx={{
-            fontSize: "2rem",
-            color: "#f1c2d6",
-            textShadow: "2px 2px 0 #0f402b, 2px 2px 0 #0f402b, 2px -2px 0 #0f402b, -2px 2px 0 #0f402b, -2px -2px 0 #0f402b, 2px 0px 0 #0f402b, 0px 2px 0 #0f402b, -2px 0px 0 #0f402b, 0px -2px 0 #0f402b",
-            mb: 2
-          }}>
-            <ReactTyped
-              strings={["Who am I ?"]}
-              typeSpeed={20}
-              startDelay={500}
-              showCursor={false}
-            />
-          </Box>
-          <Box sx={{
-            fontFamily: `${SofiaProFont.style.fontFamily}, Arial, sans-serif`,
-            fontWeight: "700",
-            fontSize: "1.3rem",
-            textAlign: "justify",
-            lineHeight: 1.4,
-            mb: 2,
-          }}>
-            <ReactTyped
-              strings={[
-                "I am a 21-year-old software engineer currently in my first year of a master's degree at Université de Bordeaux. My interests span computer science, astronomy, and quantum physics, with a strong focus on artificial intelligence. <br /><br /> I am always eager to connect with like-minded individuals and explore new opportunities. Let's create something amazing together!"
-              ]}
-              typeSpeed={0}
-              startDelay={600}
-              showCursor={false}
-            />
-          </Box>
-        </motion.div>
         <Box>
+          <AboutMe pageChanging={changingRoute} />
+        </Box>
+        <Box>
+          <Skills pageChanging={changingRoute} />
         </Box>
         <Box>
         </Box>
         <Box>
         </Box>
         <Box>
+          Education
         </Box>
         <Box>
           <Socials pageChanging={changingRoute} />
