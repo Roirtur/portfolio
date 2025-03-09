@@ -166,11 +166,15 @@ export default function Home() {
         <Box>
           <Skills pageChanging={changingRoute} />
         </Box>
-        <Box sx={{ position: "relative", padding: 1, }}>
+        <motion.div
+          style={{ position: "relative" }}
+          initial={{ opacity: 0 }}
+          animate={changingRoute ? { opacity: 0, transition: { duration: 0.5, ease: "easeIn" } } : { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }}
+        >
           <Typography sx={{ position: "absolute", bottom: 5, left: 10, }}>
             &copy; {new Date().getFullYear()}
           </Typography>
-        </Box>
+        </motion.div>
         <Box>
         </Box>
         <Box>

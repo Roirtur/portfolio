@@ -124,7 +124,7 @@ const Skills: React.FC<SkillsProps> = ({ pageChanging }) => {
                     animate={{ x: pageChanging ? '100%' : 0 }}
                     transition={{ duration: pageChanging ? 0.3 : 0.5, delay: pageChanging ? 0.3 : 0.8 }}
                 >
-                    <Typography variant="body1" sx={{ fontFamily: `${SofiaProFont.style.fontFamily}, Arial, sans-serif`, mb: 1, color: '#333' }}>
+                    <Typography variant="body1" sx={{ fontFamily: `${SofiaProFont.style.fontFamily}, Arial, sans-serif`, mb: 1, color: '#333', minHeight: '2em' }}>
                         <ReactTyped
                             strings={["These are the programming languages I am proficient in, each with its own unique strengths and applications."]}
                             typeSpeed={20}
@@ -190,7 +190,7 @@ const Skills: React.FC<SkillsProps> = ({ pageChanging }) => {
                     animate={{ x: pageChanging ? '100%' : 0 }}
                     transition={{ duration: pageChanging ? 0.3 : 0.5, delay: pageChanging ? 0.2 : 1 }}
                 >
-                    <Typography variant="body1" sx={{ fontFamily: `${SofiaProFont.style.fontFamily}, Arial, sans-serif`, mb: 2, color: '#333' }}>
+                    <Typography variant="body1" sx={{ fontFamily: `${SofiaProFont.style.fontFamily}, Arial, sans-serif`, mb: 2, color: '#333', minHeight: '2em' }}>
                         <ReactTyped
                             strings={["These are the tools and frameworks I use to streamline my workflow and build robust applications."]}
                             typeSpeed={20}
