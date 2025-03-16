@@ -17,7 +17,7 @@ export const SofiaProFont = localFont({
     display: 'swap', // Improves rendering performance
 });
 
-//#f1c2d6
+// #f1c2d6
 // #102F22
 
 const theme = createTheme({

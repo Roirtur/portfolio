@@ -30,7 +30,7 @@ export default function RootLayout({
       if (newRoute !== pathname) {
         router.push(newRoute);
       }
-    }, 500);
+    }, 700);
 
     setRouteChangeTimeout(timeout);
   };

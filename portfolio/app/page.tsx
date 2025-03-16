@@ -148,11 +148,11 @@ export default function Home() {
               left: "8%",
               top: 0,
               fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
-              lineHeight: 1,
+              lineHeight: "100%",
               zIndex: 1,
               fontSize: "7rem",
               mt: -3.2,
-              letterSpacing: -42, // Adjust the letter spacing to make the gap smaller
+              letterSpacing: "-0.4em", // Adjust the letter spacing to make the gap smaller
               textShadow: "2px 2px 0 #102F22, 2px 2px 0 #102F22, 2px -2px 0 #102F22, -2px 2px 0 #102F22, -2px -2px 0 #102F22, 2px 0px 0 #102F22, 0px 2px 0 #102F22, -2px 0px 0 #102F22, 0px -2px 0 #102F22",
               userSelect: "none", // Make the text unselectable
             }}
