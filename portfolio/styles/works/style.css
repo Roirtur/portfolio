@@ -1,0 +1,7 @@
+.shown-overflow .slick-list {
+  overflow: visible;
+}
+
+.activeProject {
+  transform: scale(1.1);
+}
