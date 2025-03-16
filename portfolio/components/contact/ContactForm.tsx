@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { sendEmail } from "./sendEmail";
 import { MilkerFont, SofiaProFont } from "@/styles/theme";
@@ -12,6 +12,16 @@ export default function ContactForm() {
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (success) {
+      const timer = setTimeout(() => {
+        setSuccess(false);
+      }, 3000); // Success message will disappear after 3 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [success]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -133,10 +143,15 @@ export default function ContactForm() {
           sx={{
             mt: 2,
             color: "#fff",
-            backgroundColor: "#0f402b",
+            backgroundColor: loading ? "#aaa" : "#0f402b",
             "&:hover": {
-              backgroundColor: "#0d3625",
+              backgroundColor: loading ? "#aaa" : "#0d3625",
             },
+            "&.Mui-disabled": {
+              color: "#fff",
+              backgroundColor: "#aaa",
+            },
+            boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.5)",
           }}
         >
           {loading ? "Sending..." : "Send Message"}
