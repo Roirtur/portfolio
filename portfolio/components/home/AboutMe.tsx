@@ -55,7 +55,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ pageChanging }) => {
             >
                 <span id="typed-strings" style={{ display: "none" }}>
                     <span>
-                        I am a 21-year-old software engineer currently in my first year of a master's degree at <a
+                        I am a 21-year-old software engineer currently in my second year of a master's degree at <a
                             href="https://www.u-bordeaux.fr"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -63,10 +63,11 @@ const AboutMe: React.FC<AboutMeProps> = ({ pageChanging }) => {
                         >
                             Université de Bordeaux
                         </a>.
-                        My interests span computer science, astronomy, and quantum physics, with a strong focus on artificial intelligence.
+                        I have a strong interest in machine learning, reinforcement learning, and symbolic AI. 
+                        Passionate about research and problem-solving, I aim to contribute to innovative projects in AI and pursue future research opportunities, including a PhD.
                         <br />
                         <br />
-                        I am always eager to connect with like-minded individuals and explore new opportunities. Let's create something amazing together!
+                        I am always eager to connect with like-minded individuals and collaborate on groundbreaking ideas. Let's push the boundaries of AI together!
                     </span>
                 </span>
                 <ReactTyped

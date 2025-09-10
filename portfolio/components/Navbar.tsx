@@ -80,7 +80,7 @@ export default function Navbar({ onRouteChange }: NavbarProps) {
             </Typography>
           </Box>
         </RotatingDiv>
-        <RotatingDiv>
+        {/* <RotatingDiv>
           <Box
             onClick={() => handleRouteChange("/works")}
             sx={{
@@ -116,7 +116,7 @@ export default function Navbar({ onRouteChange }: NavbarProps) {
             </Typography>
           </Box>
 
-        </RotatingDiv>
+        </RotatingDiv> */}
 
         <RotatingDiv>
           <Box
