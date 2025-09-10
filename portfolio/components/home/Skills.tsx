@@ -5,6 +5,7 @@ import { MilkerFont, SofiaProFont } from "@/styles/theme";
 import { motion } from 'framer-motion';
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 import { ReactTyped } from 'react-typed';
+import Image from 'next/image';
 
 const languages = [
     { name: 'Python', image: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', link: 'https://www.python.org/' },
@@ -167,7 +168,7 @@ const Skills: React.FC<SkillsProps> = ({ pageChanging }) => {
                                                     boxShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
                                                 }
                                             }}>
-                                                <img src={language.image} alt={language.name} style={{ height: 80, display: 'block' }} />
+                                                <Image src={language.image} alt={language.name} width={80} height={80} style={{ display: 'block' }} />
                                             </Box>
                                         </a>
                                     </Tooltip>
@@ -232,7 +233,7 @@ const Skills: React.FC<SkillsProps> = ({ pageChanging }) => {
                                                     boxShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
                                                 },
                                             }}>
-                                                <img src={workflowLib.image} alt={workflowLib.name} style={{ height: 80, margin: 'auto', display: 'block' }} />
+                                                <Image src={workflowLib.image} alt={workflowLib.name} width={80} height={80} style={{ margin: 'auto', display: 'block' }} />
                                             </Box>
                                         </a>
                                     </Tooltip>

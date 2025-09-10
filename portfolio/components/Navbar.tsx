@@ -13,12 +13,19 @@ interface NavbarProps {
 }
 
 export default function Navbar({ onRouteChange }: NavbarProps) {
-  const initialPath = usePathname();
-  const [currentPath, setCurrentPath] = useState(initialPath);
+  const pathname = usePathname();
+  const [currentPath, setCurrentPath] = useState<string>("");
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
-    setCurrentPath(initialPath);
-  }, [initialPath]);
+    setIsMounted(true);
+    setCurrentPath(pathname);
+  }, [pathname]);
+
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!isMounted) {
+    return null;
+  }
 
   const handleRouteChange = (route: string) => {
     if (route === currentPath) return;

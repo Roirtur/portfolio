@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Box, Typography, Paper, List, ListItem, ListItemText } from '@mui/material';
 import { MilkerFont } from '@/styles/theme';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 
 const educationData = [
     {
@@ -72,7 +73,7 @@ const Education: React.FC<{ pageChanged: boolean }> = ({ pageChanged }) => {
                                 p: 1,
                             }}
                         >
-                            <img src={edu.logo} alt={`${edu.institution} logo`} style={{ width: 70, height: 70 }} />
+                            <Image src={edu.logo} alt={`${edu.institution} logo`} width={70} height={70} />
                             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', whiteSpace: 'nowrap' }}>
                                 <ListItem sx={{ padding: 0, opacity: hoveredIndex === index ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}>
                                     <ListItemText

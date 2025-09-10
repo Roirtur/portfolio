@@ -8,47 +8,49 @@ const RotatingDiv = ({ children }: RotatingDivProps) => {
     const divRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        const currentDiv = divRef.current;
+
         interface MouseEventWithClient extends MouseEvent {
             clientX: number;
             clientY: number;
         }
 
         const handleMouseMove = (event: MouseEventWithClient) => {
-            if (divRef.current) {
+            if (currentDiv) {
                 const { clientX, clientY } = event;
-                const { left, top, width, height } = divRef.current.getBoundingClientRect();
+                const { left, top, width, height } = currentDiv.getBoundingClientRect();
                 const x = clientX - left - width / 2;
                 const y = clientY - top - height / 2;
                 const rotateX = (y / height) * -25;
                 const rotateY = (x / width) * 25;
 
-                divRef.current.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                currentDiv.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
             }
         };
 
         const handleMouseEnter = () => {
-            if (divRef.current) {
-                divRef.current.addEventListener('mousemove', handleMouseMove);
+            if (currentDiv) {
+                currentDiv.addEventListener('mousemove', handleMouseMove);
             }
         };
 
         const handleMouseLeave = () => {
-            if (divRef.current) {
-                divRef.current.style.transform = 'rotateX(0deg) rotateY(0deg)';
-                divRef.current.removeEventListener('mousemove', handleMouseMove);
+            if (currentDiv) {
+                currentDiv.style.transform = 'rotateX(0deg) rotateY(0deg)';
+                currentDiv.removeEventListener('mousemove', handleMouseMove);
             }
         };
 
-        if (divRef.current) {
-            divRef.current.addEventListener('mouseenter', handleMouseEnter);
-            divRef.current.addEventListener('mouseleave', handleMouseLeave);
+        if (currentDiv) {
+            currentDiv.addEventListener('mouseenter', handleMouseEnter);
+            currentDiv.addEventListener('mouseleave', handleMouseLeave);
         }
 
         return () => {
-            if (divRef.current) {
-                divRef.current.removeEventListener('mouseenter', handleMouseEnter);
-                divRef.current.removeEventListener('mouseleave', handleMouseLeave);
-                divRef.current.removeEventListener('mousemove', handleMouseMove);
+            if (currentDiv) {
+                currentDiv.removeEventListener('mouseenter', handleMouseEnter);
+                currentDiv.removeEventListener('mouseleave', handleMouseLeave);
+                currentDiv.removeEventListener('mousemove', handleMouseMove);
             }
         };
     }, []);
