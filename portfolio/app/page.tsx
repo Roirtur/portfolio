@@ -76,7 +76,7 @@ export default function Home() {
           width: "100vw",
           pb: 1,
           backgroundColor: "#101214",
-          pl: 5,
+          pl: 6,
           position: "relative",
         }}>
           <motion.div
@@ -90,10 +90,11 @@ export default function Home() {
               variant="h1"
               sx={{
                 fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
-                mb: -2,
                 fontSize: "7rem",
                 userSelect: "none",
-                letterSpacing: 6,
+                letterSpacing: 7,
+                alignContent: "bottom",
+                lineHeight: "0.6",
               }}
               className={`home-title`}
             >
@@ -146,13 +147,13 @@ export default function Home() {
             sx={{
               position: "absolute",
               left: "8%",
-              top: 0,
+              top: 30,
               fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
-              lineHeight: "100%",
+              lineHeight: "1",
               zIndex: 1,
               fontSize: "7rem",
               mt: -3.2,
-              letterSpacing: "-0.4em", // Adjust the letter spacing to make the gap smaller
+              letterSpacing: "-10px", // Match the horizontal text letter spacing
               textShadow: "2px 2px 0 #102F22, 2px 2px 0 #102F22, 2px -2px 0 #102F22, -2px 2px 0 #102F22, -2px -2px 0 #102F22, 2px 0px 0 #102F22, 0px 2px 0 #102F22, -2px 0px 0 #102F22, 0px -2px 0 #102F22",
               userSelect: "none", // Make the text unselectable
             }}

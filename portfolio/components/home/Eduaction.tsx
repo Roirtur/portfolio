@@ -7,7 +7,7 @@ import Image from 'next/image';
 const educationData = [
     {
         institution: 'Université de Bordeaux',
-        degree: "Master's degree - Computer Science",
+        degree: "Master's degree - Artificial Intelligence",
         year: '2024 - Current',
         logo: 'https://agir.u-bordeaux.fr/build/images/logo/logo_carre.svg',
     },

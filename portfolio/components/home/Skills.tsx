@@ -159,6 +159,7 @@ const Skills: React.FC<SkillsProps> = ({ pageChanging }) => {
                                                 margin: 'auto',
                                                 transition: 'transform 0.3s, box-shadow 0.3s',
                                                 boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                                                display: 'inline-block',
                                                 '&:hover': {
                                                     transform: 'scale(0.95)',
                                                     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
@@ -168,7 +169,7 @@ const Skills: React.FC<SkillsProps> = ({ pageChanging }) => {
                                                     boxShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
                                                 }
                                             }}>
-                                                <Image src={language.image} alt={language.name} width={80} height={80} style={{ display: 'block' }} />
+                                                <Image src={language.image} alt={language.name} width={80} height={80} style={{ display: 'block', width: 'auto', height: '80px', maxWidth: '150px' }} />
                                             </Box>
                                         </a>
                                     </Tooltip>
@@ -224,6 +225,7 @@ const Skills: React.FC<SkillsProps> = ({ pageChanging }) => {
                                                 margin: 'auto',
                                                 transition: 'transform 0.3s, box-shadow 0.3s',
                                                 boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                                                display: 'inline-block',
                                                 '&:hover': {
                                                     transform: 'scale(0.95)',
                                                     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.2)',
@@ -233,7 +235,7 @@ const Skills: React.FC<SkillsProps> = ({ pageChanging }) => {
                                                     boxShadow: '0 1px 2px rgba(0, 0, 0, 0.2)',
                                                 },
                                             }}>
-                                                <Image src={workflowLib.image} alt={workflowLib.name} width={80} height={80} style={{ margin: 'auto', display: 'block' }} />
+                                                <Image src={workflowLib.image} alt={workflowLib.name} width={80} height={80} style={{ margin: 'auto', display: 'block', width: 'auto', height: '80px', maxWidth: '150px' }} />
                                             </Box>
                                         </a>
                                     </Tooltip>
