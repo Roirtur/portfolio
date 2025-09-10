@@ -5,11 +5,11 @@
   "homepage": "https://roirtur.github.io/portfolio/",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && touch out/.nojekyll",
+    "build": "next build && touch out/.nojekyll && cp .nojekyll out/",
     "start": "next start",
     "lint": "next lint",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d out"
+    "deploy": "gh-pages -d out --dotfiles --repo https://github.com/Roirtur/portfolio.git"
   },
   "dependencies": {
     "@emotion/react": "^11.14.0",
