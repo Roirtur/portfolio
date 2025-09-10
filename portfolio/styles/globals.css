@@ -21,8 +21,16 @@ a {
   text-decoration: none;
 }
 
-/* Mobile-first: Hide scrollbar on mobile to prevent any interaction */
+/* Mobile-first: Prevent any scrolling and disable interactions on mobile */
 @media (max-width: 1024px) {
+  html, body {
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    -webkit-overflow-scrolling: none;
+  }
+  
   ::-webkit-scrollbar {
     display: none;
   }
