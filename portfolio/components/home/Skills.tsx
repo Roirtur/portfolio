@@ -86,9 +86,31 @@ const Skills: React.FC<SkillsProps> = ({ pageChanging }) => {
     }, [pageChanging]);
 
     return (
-        <Box sx={{ position: "relative", height: "100%", width: "100%", }}>
-            <Box sx={{ height: 'calc(100% - 2* 20px)', width: 'calc(100% - 2* 40px)', overflowX: 'hidden', overflowY: 'hidden', m: "40px", mb: 0, mt: "20px", pb: 1, }} ref={scrollRef}>
-                <Box sx={{ position: 'absolute', bottom: 20, right: 42, transition: "opacity 0.2s", opacity: showArrow && !pageChanging ? 0.9 : 0, zIndex: 1000 }}>
+        <Box sx={{ 
+            position: "relative", 
+            height: "100%", 
+            width: "100%",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "flex-start",
+            p: { xs: 1, sm: 2, md: 3 }
+        }}>
+            <Box sx={{ 
+                height: '100%', 
+                width: '100%', 
+                overflowX: 'hidden', 
+                overflowY: 'hidden',
+                position: "relative"
+            }} ref={scrollRef}>
+                <Box sx={{ 
+                    position: 'absolute', 
+                    bottom: { xs: 5, sm: 10, md: 20 }, 
+                    right: { xs: 5, sm: 15, md: 42 }, 
+                    transition: "opacity 0.2s", 
+                    opacity: showArrow && !pageChanging ? 0.9 : 0, 
+                    zIndex: 1000 
+                }}>
                     <motion.div
                         animate={{ y: [0, -10, 0] }}
                         transition={{ repeat: Infinity, duration: 1 }}
@@ -103,7 +125,7 @@ const Skills: React.FC<SkillsProps> = ({ pageChanging }) => {
                 >
                     <Typography variant="h4" sx={{
                         fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
-                        fontSize: "2rem",
+                        fontSize: { xs: "1.2rem", sm: "1.5rem", md: "2rem" },
                         color: "#f1c2d6",
                         pl: 0.2,
                         textShadow: "2px 2px 0 #0f402b, 2px 2px 0 #0f402b, 2px -2px 0 #0f402b, -2px 2px 0 #0f402b, -2px -2px 0 #0f402b, 2px 0px 0 #0f402b, 0px 2px 0 #0f402b, -2px 0px 0 #0f402b, 0px -2px 0 #0f402b",
@@ -116,7 +138,11 @@ const Skills: React.FC<SkillsProps> = ({ pageChanging }) => {
                     animate={{ x: pageChanging ? '100%' : 0 }}
                     transition={{ duration: pageChanging ? 0.3 : 0.5, delay: pageChanging ? 0.2 : 0.7 }}
                 >
-                    <Typography variant="h5" sx={{ fontFamily: `${SofiaProFont.style.fontFamily}, Arial, sans-serif`, color: '#0f402b' }}>
+                    <Typography variant="h5" sx={{ 
+                        fontFamily: `${SofiaProFont.style.fontFamily}, Arial, sans-serif`, 
+                        color: '#0f402b',
+                        fontSize: { xs: "0.9rem", sm: "1rem", md: "1.2rem" }
+                    }}>
                         Programming Languages
                     </Typography>
                 </motion.div>

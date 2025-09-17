@@ -24,20 +24,21 @@ const Socials: React.FC<{ pageChanging: boolean }> = ({ pageChanging }) => {
 
     const socialAnimation = (index: number) => ({
         hidden: { y: 100, opacity: 0 },
-        visible: { y: 0, opacity: 1, transition: { delay: (1 + index * 0.2), type: 'spring', stiffness: 100 } },
-        exit: { y: 100, opacity: 0, transition: { delay: (index * 0.1), type: 'spring', stiffness: 100 } },
+        visible: { y: 0, opacity: 1, transition: { delay: (1 + index * 0.2), type: 'spring' as const, stiffness: 100 } },
+        exit: { y: 100, opacity: 0, transition: { delay: (index * 0.1), type: 'spring' as const, stiffness: 100 } },
     });
 
     return (
         <Box
             sx={{
                 display: 'flex',
-                gap: 2,
-                justifyContent: 'space-between',
+                gap: { xs: 0.5, sm: 1, md: 2 },
+                justifyContent: 'center',
                 alignItems: 'center',
                 width: '100%',
                 height: '100%',
-                px: 12,
+                px: { xs: 1, sm: 2, md: 4 },
+                flexWrap: 'wrap'
             }}
         >
             {socials.map((social, index) => (

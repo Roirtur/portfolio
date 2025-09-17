@@ -39,19 +39,19 @@ export default function Home() {
 
   const nameAnimation = {
     hidden: { y: -200, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut", delay: 0.2 } },
-    exit: { y: -200, opacity: 0, transition: { duration: 0.5, ease: "easeIn" } },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" as const, delay: 0.2 } },
+    exit: { y: -200, opacity: 0, transition: { duration: 0.5, ease: "easeIn" as const } },
   };
   const name2Animation = {
     hidden: { x: -200, opacity: 0 },
-    visible: { x: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut", delay: 0.2 } },
-    exit: { x: -200, opacity: 0, transition: { duration: 0.5, ease: "easeIn" } },
+    visible: { x: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" as const, delay: 0.2 } },
+    exit: { x: -200, opacity: 0, transition: { duration: 0.5, ease: "easeIn" as const } },
   };
 
   const headerAnimation = {
     hidden: { y: -200, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
-    exit: { y: -200, opacity: 0, transition: { duration: 0.5, ease: "easeIn" } },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" as const } },
+    exit: { y: -200, opacity: 0, transition: { duration: 0.5, ease: "easeIn" as const } },
   };
 
   return (
@@ -72,11 +72,11 @@ export default function Home() {
           flexDirection: "row",
           alignItems: "flex-end",
           gap: 2,
-          height: "20vh",
+          height: { xs: "15vh", sm: "18vh", md: "20vh" },
           width: "100vw",
           pb: 1,
           backgroundColor: "#101214",
-          pl: 6,
+          pl: { xs: 2, sm: 4, md: 6 },
           position: "relative",
         }}>
           <motion.div
@@ -84,7 +84,7 @@ export default function Home() {
             initial="hidden"
             animate={changingRoute ? "exit" : "visible"}
             variants={nameAnimation}
-            style={{ mixBlendMode: "difference", color: "#E8E2F6", userSelect: "none", position: "absolute", left: "2.8%", }}
+            style={{ mixBlendMode: "difference", color: "#E8E2F6", userSelect: "none", position: "absolute", left: "3%", top: "50%", transform: "translateY(-50%)" }}
           >
             <Typography
               variant="h1"
@@ -108,30 +108,36 @@ export default function Home() {
         </Box>
       </motion.div>
       <Box sx={{
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
+        display: "grid",
+        gridTemplateColumns: { 
+          xs: "minmax(80px, 1fr) minmax(100px, 1fr) minmax(300px, 3fr) minmax(200px, 2fr)",
+          sm: "minmax(100px, 1fr) minmax(120px, 1fr) minmax(400px, 3fr) minmax(250px, 2fr)",
+          md: "minmax(120px, 1fr) minmax(133px, 1fr) minmax(500px, 3fr) minmax(300px, 2fr)",
+          lg: "140px 133px minmax(600px, 1fr) minmax(350px, 1fr)",
+          xl: "140px 133px 680px 1fr"
+        },
+        gridTemplateRows: { 
+          xs: "minmax(250px, 1fr) minmax(150px, auto)",
+          sm: "minmax(300px, 1fr) minmax(180px, auto)",
+          md: "minmax(350px, 1fr) minmax(200px, auto)",
+          lg: `minmax(400px, calc(80vh - 20vh)) minmax(200px, calc(20vh))`
+        },
+        width: "100vw",
+        height: { xs: "85vh", sm: "82vh", md: "80vh" },
+        overflow: "hidden",
         "& > *": {
-          flex: "0 0 auto",
+          overflow: "hidden"
         },
-        "& > :nth-of-type(1), & > :nth-of-type(2), & > :nth-of-type(3), & > :nth-of-type(4)": {
-          height: "54.1vh",
+        "& > :nth-of-type(2)": {
+          display: "flex",
+          alignItems: "flex-start",
+          justifyContent: "center"
         },
-        "& > :nth-of-type(5), & > :nth-of-type(6), & > :nth-of-type(7), & > :nth-of-type(8)": {
-          height: "calc(100vh - 54.1vh - 20vh)",
-        },
-        "& > :nth-of-type(1), & > :nth-of-type(5)": {
-          width: "140px",
-        },
-        "& > :nth-of-type(2), & > :nth-of-type(6)": {
-          width: "133px",
-        },
-        "& > :nth-of-type(3), & > :nth-of-type(7)": {
-          width: "680px",
-        },
-        "& > :nth-of-type(4), & > :nth-of-type(8)": {
-          width: "calc(100vw - 953px)",
-        },
+        "& > :nth-of-type(3), & > :nth-of-type(4), & > :nth-of-type(7), & > :nth-of-type(8)": {
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center"
+        }
       }}>
         <Box>
         </Box>
@@ -140,7 +146,18 @@ export default function Home() {
           initial="hidden"
           animate={changingRoute ? "exit" : "visible"}
           variants={name2Animation}
-          style={{ color: "#f1c2d6", writingMode: "vertical-rl", textOrientation: "upright", position: "relative", overflow: "hidden", }}
+          style={{ 
+            color: "#f1c2d6", 
+            writingMode: "vertical-rl", 
+            textOrientation: "upright", 
+            position: "relative", 
+            overflow: "hidden",
+            display: "flex",
+            alignItems: "flex-start",
+            justifyContent: "center",
+            width: "100%",
+            height: "100%"
+          }}
         >
           <Typography
             variant="h1"
@@ -173,7 +190,13 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={changingRoute ? { opacity: 0, transition: { duration: 0.5, ease: "easeIn" } } : { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } }}
         >
-          <Typography sx={{ position: "absolute", bottom: 5, left: 10, }}>
+          <Typography sx={{ 
+            position: "absolute", 
+            bottom: { xs: 2, sm: 3, md: 5 }, 
+            left: { xs: 5, sm: 8, md: 10 },
+            fontSize: { xs: "0.7rem", sm: "0.8rem", md: "1rem" },
+            color: "#0f402b"
+          }}>
             &copy; {new Date().getFullYear()}
           </Typography>
         </motion.div>
