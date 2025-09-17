@@ -175,7 +175,7 @@ export default function ContactForm() {
               sx={{
                 mb: 2,
                 "& .MuiFilledInput-root": {
-                  backgroundColor: "rgba(200, 194, 207, 0.08)",
+                  backgroundColor: "#26292fff",
                   backdropFilter: "blur(10px)",
                   borderRadius: 2,
                   border: "1px solid rgba(241, 194, 214, 0.2)",
@@ -231,7 +231,7 @@ export default function ContactForm() {
               sx={{
                 mb: 2,
                 "& .MuiFilledInput-root": {
-                  backgroundColor: "rgba(200, 194, 207, 0.08)",
+                  backgroundColor: "#26292fff",
                   backdropFilter: "blur(10px)",
                   borderRadius: 2,
                   border: "1px solid rgba(241, 194, 214, 0.2)",
@@ -288,7 +288,7 @@ export default function ContactForm() {
               sx={{
                 mb: 3,
                 "& .MuiFilledInput-root": {
-                  backgroundColor: "rgba(200, 194, 207, 0.08)",
+                  backgroundColor: "#26292fff",
                   backdropFilter: "blur(10px)",
                   borderRadius: 2,
                   border: "1px solid rgba(241, 194, 214, 0.2)",
