@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import toast, { Toaster } from "react-hot-toast";
 import { sendEmail } from "./sendEmail";
 import { MilkerFont, SofiaProFont } from "@/styles/theme";
 
@@ -11,34 +12,57 @@ export default function ContactForm() {
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    if (success) {
-      const timer = setTimeout(() => {
-        setSuccess(false);
-      }, 3000); // Success message will disappear after 3 seconds
-
-      return () => clearTimeout(timer);
-    }
-  }, [success]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError("");
-    setSuccess(false);
 
     try {
       await sendEmail(name, email, message);
 
-      setSuccess(true);
+      toast.success("✨ Message sent successfully! I'll get back to you soon.", {
+        duration: 3000,
+        position: "top-right",
+        style: {
+          background: "linear-gradient(135deg, rgba(16, 18, 20, 0.95) 0%, rgba(20, 25, 30, 0.9) 50%, rgba(24, 28, 32, 0.95) 100%)",
+          backdropFilter: "blur(20px)",
+          border: "1px solid rgba(78, 205, 196, 0.3)",
+          borderRadius: "12px",
+          boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.3), inset 0px 1px 0px rgba(255, 255, 255, 0.1)",
+          color: "#4ecdc4",
+          fontFamily: "Sofia Pro Regular Az, Arial, sans-serif",
+          fontSize: "1rem",
+          fontWeight: "500",
+        },
+        iconTheme: {
+          primary: "#4ecdc4",
+          secondary: "rgba(16, 18, 20, 0.95)",
+        },
+      });
+
       setName("");
       setEmail("");
       setMessage("");
     } catch (err) {
-      setError("An error occurred. Please try again.");
+      toast.error("An error occurred. Please try again.", {
+        duration: 4000,
+        position: "top-right",
+        style: {
+          background: "linear-gradient(135deg, rgba(16, 18, 20, 0.95) 0%, rgba(20, 25, 30, 0.9) 50%, rgba(24, 28, 32, 0.95) 100%)",
+          backdropFilter: "blur(20px)",
+          border: "1px solid rgba(255, 107, 107, 0.3)",
+          borderRadius: "12px",
+          boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.3), inset 0px 1px 0px rgba(255, 255, 255, 0.1)",
+          color: "#ff6b6b",
+          fontFamily: "Sofia Pro Regular Az, Arial, sans-serif",
+          fontSize: "1rem",
+          fontWeight: "500",
+        },
+        iconTheme: {
+          primary: "#ff6b6b",
+          secondary: "rgba(16, 18, 20, 0.95)",
+        },
+      });
     } finally {
       setLoading(false);
     }
@@ -288,55 +312,7 @@ export default function ContactForm() {
               }}
             />
           </motion.div>
-          {/* Status Messages */}
-          {error && (
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Typography 
-                sx={{ 
-                  color: "#ff6b6b", 
-                  textAlign: "center", 
-                  mb: 2,
-                  fontFamily: `${SofiaProFont.style.fontFamily}, Arial, sans-serif`,
-                  fontSize: "1rem",
-                  padding: 2,
-                  borderRadius: 2,
-                  backgroundColor: "rgba(255, 107, 107, 0.1)",
-                  border: "1px solid rgba(255, 107, 107, 0.3)",
-                }}
-              >
-                {error}
-              </Typography>
-            </motion.div>
-          )}
           
-          {success && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, ease: "easeOut" }}
-            >
-              <Typography 
-                sx={{ 
-                  color: "#4ecdc4", 
-                  textAlign: "center", 
-                  mb: 2,
-                  fontFamily: `${SofiaProFont.style.fontFamily}, Arial, sans-serif`,
-                  fontSize: "1rem",
-                  padding: 2,
-                  borderRadius: 2,
-                  backgroundColor: "rgba(78, 205, 196, 0.1)",
-                  border: "1px solid rgba(78, 205, 196, 0.3)",
-                }}
-              >
-                ✨ Message sent successfully! I&apos;ll get back to you soon.
-              </Typography>
-            </motion.div>
-          )}
-
           {/* Submit Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -406,6 +382,30 @@ export default function ContactForm() {
           </motion.div>
         </motion.form>
       </Box>
+
+      {/* React Hot Toast Container */}
+      <Toaster
+        position="top-right"
+        gutter={8}
+        containerStyle={{
+          top: 80,
+        }}
+        toastOptions={{
+          duration: 3000,
+          style: {
+            background: "linear-gradient(135deg, rgba(16, 18, 20, 0.95) 0%, rgba(20, 25, 30, 0.9) 50%, rgba(24, 28, 32, 0.95) 100%)",
+            backdropFilter: "blur(20px)",
+            border: "1px solid rgba(241, 194, 214, 0.1)",
+            borderRadius: "12px",
+            boxShadow: "0px 20px 40px rgba(0, 0, 0, 0.3), inset 0px 1px 0px rgba(255, 255, 255, 0.1)",
+            color: "#f1c2d6",
+            fontFamily: "Sofia Pro Regular Az, Arial, sans-serif",
+            fontSize: "1rem",
+            fontWeight: "500",
+            padding: "16px",
+          },
+        }}
+      />
     </motion.div>
   );
 }

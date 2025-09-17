@@ -7,7 +7,7 @@ import EmailIcon from "@mui/icons-material/Email";
 import { useEffect, useState } from "react";
 import "@/styles/contact/style.css";
 import ContactForm from "@/components/contact/ContactForm";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import CopiableText from "@/components/CopiableText";
 import { MilkerFont } from "@/styles/theme";
 
@@ -35,13 +35,13 @@ export default function Contact() {
     return () => clearTimeout(timer);
   }, []);
 
-  const containerAnimation = {
+  const containerAnimation: Variants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1, transition: { duration: 0.8, ease: "easeOut" } },
     exit: { opacity: 0, transition: { duration: 0.5, ease: "easeIn" } },
   };
 
-  const rightBoxAnimation = {
+  const rightBoxAnimation: Variants = {
     hidden: { x: "100%" },
     visible: { x: 0, transition: { duration: 0.8, ease: "easeOut" } },
     exit: { x: "100%", transition: { duration: 0.5, ease: "easeIn" } },

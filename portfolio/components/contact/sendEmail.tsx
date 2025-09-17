@@ -4,6 +4,7 @@ export async function sendEmail(name: string, email: string, message: string) {
   // You can integrate with EmailJS or similar service here
   
   // Temporary implementation - replace with your preferred email service
+  throw new Error("Email sending not implemented. Please integrate with an email service like EmailJS.");
   console.log('Email would be sent:', { name, email, message });
   
   // Simulate API call
