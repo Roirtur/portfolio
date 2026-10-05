@@ -2,7 +2,7 @@ import { MilkerFont, SofiaProFont } from '@/styles/theme';
 import { Box } from '@mui/material';
 import { motion } from 'framer-motion';
 import React from 'react';
-import { ReactTyped } from 'react-typed';
+import '@/styles/home/style.css';
 
 interface AboutMeProps {
     pageChanging: boolean;
@@ -36,12 +36,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ pageChanging }) => {
                 textShadow: "2px 2px 0 #0f402b, 2px 2px 0 #0f402b, 2px -2px 0 #0f402b, -2px 2px 0 #0f402b, -2px -2px 0 #0f402b, 2px 0px 0 #0f402b, 0px 2px 0 #0f402b, -2px 0px 0 #0f402b, 0px -2px 0 #0f402b",
                 mb: 2
             }}>
-                <ReactTyped
-                    strings={["Who am I ?"]}
-                    typeSpeed={20}
-                    startDelay={500}
-                    showCursor={false}
-                />
+                <span className="typed-heading">AI research &amp; thesis</span>
             </Box>
             <Box
                 sx={{
@@ -53,9 +48,8 @@ const AboutMe: React.FC<AboutMeProps> = ({ pageChanging }) => {
                     mb: 2,
                 }}
             >
-                <span id="typed-strings" style={{ display: "none" }}>
                     <span>
-                        I am a 21-year-old software engineer currently in my second year of a master's degree at <a
+                        I graduated in 2026 with a master&apos;s degree in Artificial Intelligence from <a
                             href="https://www.u-bordeaux.fr"
                             target="_blank"
                             rel="noopener noreferrer"
@@ -63,19 +57,11 @@ const AboutMe: React.FC<AboutMeProps> = ({ pageChanging }) => {
                         >
                             Université de Bordeaux
                         </a>.
-                        I have a strong interest in machine learning, reinforcement learning, and symbolic AI. 
-                        Passionate about research and problem-solving, I aim to contribute to innovative projects in AI and pursue future research opportunities, including a PhD.
+                        My interests include machine learning, reinforcement learning, and symbolic AI. I am looking for a PhD thesis in AI where I can investigate challenging questions and contribute to research.
                         <br />
                         <br />
-                        I am always eager to connect with like-minded individuals and collaborate on groundbreaking ideas. Let's push the boundaries of AI together!
+                        My work includes curiosity-driven exploration at Inria FLOWERS and a multi-expert pipeline for peptide design. The projects page has code, slides, and reports for both.
                     </span>
-                </span>
-                <ReactTyped
-                    stringsElement="#typed-strings"
-                    typeSpeed={0}
-                    startDelay={600}
-                    showCursor={false}
-                />
             </Box>
         </motion.div>
     );

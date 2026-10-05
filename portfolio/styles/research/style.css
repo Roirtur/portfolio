@@ -1,0 +1,25 @@
+.research-page {
+  display: grid;
+  grid-template-columns: minmax(320px, 42%) minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.research-intro {
+  background: #101214;
+  color: #f1c2d6;
+  padding: 12vh 4.5vw 4vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.research-skills {
+  padding: 13vh 5vw 5vw;
+}
+
+@media (max-width: 1100px) {
+  .research-page { grid-template-columns: 1fr; }
+  .research-intro { min-height: 45vh; }
+  .research-skills { padding-top: 4rem; }
+}

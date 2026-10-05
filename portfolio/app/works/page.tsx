@@ -1,325 +1,140 @@
 "use client";
 
+import { Box, IconButton, Typography } from "@mui/material";
+import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
+import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { AnimatePresence, motion } from "framer-motion";
+import { useCallback, useEffect, useRef, useState } from "react";
 import events from "@/scripts/events";
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { Box, Button, IconButton } from "@mui/material";
-import { useEffect, useState, useRef } from "react";
+import CornerFrame from "@/components/CornerFrame";
+import RotatingDiv from "@/components/Rotate";
+import { projects } from "@/components/works/projects";
+import { MilkerFont, SofiaProFont } from "@/styles/theme";
 import "@/styles/works/style.css";
-import { MilkerFont } from "@/styles/theme";
-import ProjectCard, { Project } from "@/components/works/ProjectCard";
-import { motion } from "framer-motion";
 
-const projects: Project[] = [
-    {
-        title: "Project One",
-        description: "Description for project one.",
-        image: "/images/project1.jpg",
-        link: "#"
-    },
-    {
-        title: "Project Two",
-        description: "Description for project two.",
-        image: "/images/project2.jpg",
-        link: "#"
-    },
-    {
-        title: "Project Three",
-        description: "Description for project three.",
-        image: "/images/project3.jpg",
-        link: "#"
-    },
-    {
-        title: "Project Four",
-        description: "Description for project four.",
-        image: "/images/project4.jpg",
-        link: "#"
-    },
-    {
-        title: "Project Five",
-        description: "Description for project five.",
-        image: "/images/project5.jpg",
-        link: "#"
-    },
-    {
-        title: "Project 5",
-        description: "Description for project 4.",
-        image: "/images/project5.jpg",
-        link: "#"
-    },
-    {
-        title: "Project 1",
-        description: "Description for project 5.",
-        image: "/images/project5.jpg",
-        link: "#"
-    },
-    {
-        title: "Project 1",
-        description: "Description for project 51212.",
-        image: "/images/project5.jpg",
-        link: "#"
-    },
-    {
-        title: "Project 1",
-        description: "Description for project 132315.",
-        image: "/images/project5.jpg",
-        link: "#"
-    },
-    {
-        title: "Project 1",
-        description: "Description for project 5321.",
-        image: "/images/project5.jpg",
-        link: "#"
-    },
-    {
-        title: "Project 1",
-        description: "Description for project 43333.",
-        image: "/images/project5.jpg",
-        link: "#"
-    },
-];
+function ResourceLink({ href, label }: { href: string; label: string }) {
+  return (
+    <RotatingDiv>
+      <Box component="a" href={href} target="_blank" rel="noopener noreferrer" className="nav-item content-link works-link">
+        <CornerFrame />
+        <Typography className="text" sx={{ fontFamily: SofiaProFont.style.fontFamily }}>{label} ↗</Typography>
+      </Box>
+    </RotatingDiv>
+  );
+}
 
 export default function Works() {
-    const [changingRoute, setChangingRoute] = useState<boolean>(false);
-    const [currentAngle, setCurrentAngle] = useState<number>(0);
-    const [isAnimating, setIsAnimating] = useState<boolean>(false);
-    const animationRef = useRef<number | null>(null);
+  const [changingRoute, setChangingRoute] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [turn, setTurn] = useState(0);
+  const [stageSize, setStageSize] = useState(550);
+  const stageRef = useRef<HTMLDivElement>(null);
+  const activeIndexRef = useRef(0);
+  const activeProject = projects[activeIndex];
+  const count = projects.length;
+  const radius = Math.min(stageSize * 0.31, 225);
+  const step = 360 / Math.min(count, 5);
 
-    const simulatedProjects = projects
+  const selectProject = useCallback((target: number, direction?: number) => {
+    const current = activeIndexRef.current;
+    if (target === current) return;
+    const forward = (target - current + count) % count;
+    const delta = direction ?? (forward > count / 2 ? forward - count : forward);
+    activeIndexRef.current = target;
+    setActiveIndex(target);
+    setTurn((previous) => previous + delta);
+  }, [count]);
 
-    useEffect(() => {
-        const handler = (data: string) => {
-            setChangingRoute(data !== "/works");
-        };
+  useEffect(() => {
+    const handler = (route: string) => setChangingRoute(route !== "/works");
+    events.on("routeChanged", handler);
+    return () => events.off("routeChanged", handler);
+  }, []);
 
-        events.on("routeChanged", handler);
+  useEffect(() => {
+    const stage = stageRef.current;
+    if (!stage) return;
+    const observer = new ResizeObserver(() => setStageSize(Math.min(stage.clientWidth, stage.clientHeight)));
+    observer.observe(stage);
+    return () => observer.disconnect();
+  }, []);
 
-        return () => {
-            events.off("routeChanged", handler);
-            if (animationRef.current) cancelAnimationFrame(animationRef.current);
-        };
-    }, []);
-
-    // Easing function: easeInOutCubic
-    const easeInOutCubic = (t: number) =>
-        t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-
-    // Animate rotation using a time-based approach with easing.
-    // The animation disables buttons until complete.
-    const animateRotation = (direction: "left" | "right") => {
-        if (isAnimating) return; // Prevent starting a new animation
-
-        setIsAnimating(true);
-        const stepAngle = (2 * Math.PI) / simulatedProjects.length; // one project slot
-        const targetAngle =
-            direction === "left" ? currentAngle - stepAngle : currentAngle + stepAngle;
-        const duration = 600; // in milliseconds, increased for smoother animation
-        const startAngle = currentAngle;
-        const startTime = performance.now();
-
-        const animate = (now: number) => {
-            const elapsed = now - startTime;
-            const progress = Math.min(elapsed / duration, 1);
-            const easedProgress = easeInOutCubic(progress);
-            const newAngle = startAngle + (targetAngle - startAngle) * easedProgress;
-            setCurrentAngle(newAngle);
-            if (elapsed < duration) {
-                animationRef.current = requestAnimationFrame(animate);
-            } else {
-                setCurrentAngle(targetAngle);
-                setIsAnimating(false);
-            }
-        };
-
-        if (animationRef.current) cancelAnimationFrame(animationRef.current);
-        animationRef.current = requestAnimationFrame(animate);
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowRight") selectProject((activeIndexRef.current + 1) % count, 1);
+      if (event.key === "ArrowLeft") selectProject((activeIndexRef.current - 1 + count) % count, -1);
     };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [count, selectProject]);
 
-    const handleRotateLeft = () => animateRotation("left");
-    const handleRotateRight = () => animateRotation("right");
-
-    const radius = 800; // radius for positioning cards
-
-    return (
-        <Box
-            sx={{
-                width: "100vw",
-                height: "100vh",
-                textAlign: "center",
-                fontFamily: MilkerFont,
-                overflow: "hidden",
-                position: "relative"
-            }}
-        >
-            <motion.div
-                initial={{ opacity: 0, x: -100, y: -100 }}
-                animate={changingRoute ? { opacity: 0, x: -100, y: -100 } : { opacity: 1, x: 0, y: 0 }}
-                transition={{ duration: changingRoute ? 0.3 : 1 }}
-            >
-                <Box
-                    sx={{
-                        width: "50vw",
-                        height: "50vw",
-                        backgroundColor: "#101214",
-                        borderRadius: "50%",
-                        position: "absolute",
-                        top: "0",
-                        left: "0",
-                        transform: "translate(-30%, -20%)",
-                    }}
-                />
-            </motion.div>
-            <motion.div
-                initial={{ opacity: 0, x: 100, y: -100 }}
-                animate={changingRoute ? { opacity: 0, x: 100, y: -100 } : { opacity: 1, x: 0, y: 0 }}
-                transition={{ duration: changingRoute ? 0.3 : 1 }}
-            >
-                <Box
-                    sx={{
-                        width: "50vw",
-                        height: "50vw",
-                        backgroundColor: "#101214",
-                        borderRadius: "50%",
-                        position: "absolute",
-                        top: "0",
-                        right: "0",
-                        transform: "translate(30%, -20%)",
-                    }}
-                />
-            </motion.div>
-
-            <Box
-                sx={{
-                    backgroundColor: "#C8C2CF",
-                    position: "absolute",
-                    borderRadius: "50%",
-                    bottom: 0,
-                    left: "50%",
-                    width: "100vw",
-                    height: "100vw",
-                    transform: "translate(-50%, 70%)"
-                }}
-            />
-            <motion.div
-                initial={{ opacity: 0, y: 1100 }}
-                animate={changingRoute ? { opacity: 0, y: 1100 } : { opacity: 1, y: 900 }}
-                transition={{ duration: changingRoute ? 0.3 : 1 }}
-            >
-                <Box
-                    sx={{
-                        backgroundColor: "#101214",
-                        position: "absolute",
-                        borderRadius: "50%",
-                        bottom: 0,
-                        left: "50%",
-                        width: "90vw",
-                        height: "90vw",
-                        transform: "translate(-50%, 70%)"
-                    }}
-                >
-                    {simulatedProjects.map((project, index) => {
-                        // Compute angle for each project card
-                        const angle = (index / simulatedProjects.length) * 2 * Math.PI + currentAngle;
-                        // Position relative to center using standard circle formulas.
-                        const x = radius * Math.cos(angle - Math.PI / 2);
-                        const y = radius * Math.sin(angle - Math.PI / 2);
-                        const isActive = Math.abs(angle % (2 * Math.PI)) < 0.5 || Math.abs(angle % (2 * Math.PI) - 2 * Math.PI) < 0.5; // Check if the angle is close to 0 (top position) or 2*PI (right position)
-                        return (
-                            <motion.div
-                                key={index}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ duration: 0.4, delay: 0.6 + ((index + simulatedProjects.length + 3) % simulatedProjects.length) * 0.2 }}
-                            >
-                                <Box
-                                    className={isActive ? "activeProject" : ""}
-                                    sx={{
-                                        position: "absolute",
-                                        left: `calc(50% + ${x}px)`,
-                                        top: `calc(50% + ${y}px)`,
-                                        // Use translate(-50%, -100%) so the card's bottom center aligns with the computed position.
-                                        transform: `translate(-50%, -100%) rotate(${angle}rad)}`,
-                                        transformOrigin: "50% 100%",
-                                    }}
-                                >
-                                    <Box
-                                        className={isActive ? "activeProject" : ""}
-                                        sx={{
-                                            boxShadow: isActive ? 4 : 2,
-                                            transform: `${isActive ? "scale(1.4)" : ""}`,
-                                            transition: "transform 0.6s",
-                                        }}
-                                    >
-                                        <ProjectCard project={project} />
-                                    </Box>
-                                </Box>
-                            </motion.div>
-                        );
-                    })}
-                </Box>
-            </motion.div>
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={changingRoute ? { opacity: 0 } : { opacity: 1 }}
-                transition={changingRoute ? { duration: 0.3 } : { duration: 1, ease: "easeInOut", delay: 0.5 }}
-            >
-                <IconButton
-                    onClick={handleRotateLeft}
-                    disabled={isAnimating}
-                    sx={{
-                        position: "absolute",
-                        top: "62%",
-                        left: "42%",
-                        transform: "translateY(-50%)",
-                        color: "#E8BCB9",
-                        backgroundColor: isAnimating ? "#aaa" : "#0f402b",
-                        transition: "background-color 0.3s, transform 0.3s",
-                        "&:hover": {
-                            color: "#0f402b",
-                            backgroundColor: isAnimating ? "#aaa" : "#E8BCB9",
-                            transform: isAnimating ? "translateY(-50%)" : "translateY(-50%) scale(1.1)",
-                        },
-                        "&.Mui-disabled": {
-                            color: "#fff",
-                            backgroundColor: "#aaa",
-                        },
-                        boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.5)",
-                    }}
-                >
-                    <ChevronLeftIcon />
-                </IconButton>
-            </motion.div>
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={changingRoute ? { opacity: 0 } : { opacity: 1 }}
-                transition={changingRoute ? { duration: 0.3 } : { duration: 1, ease: "easeInOut", delay: 0.5 }}
-            >
-                <IconButton
-                    onClick={handleRotateRight}
-                    disabled={isAnimating}
-                    sx={{
-                        position: "absolute",
-                        top: "62%",
-                        right: "42%",
-                        transform: "translateY(-50%)",
-                        color: "#E8BCB9",
-                        backgroundColor: isAnimating ? "#aaa" : "#0f402b",
-                        transition: "background-color 0.3s, transform 0.3s",
-                        "&:hover": {
-                            color: "#0f402b",
-                            backgroundColor: isAnimating ? "#aaa" : "#E8BCB9",
-                            transform: isAnimating ? "translateY(-50%)" : "translateY(-50%) scale(1.1)",
-                        },
-                        "&.Mui-disabled": {
-                            color: "#fff",
-                            backgroundColor: "#aaa",
-                        },
-                        boxShadow: "0px 4px 15px rgba(0, 0, 0, 0.5)",
-                    }}
-                >
-                    <ChevronRightIcon />
-                </IconButton>
-            </motion.div>
+  return (
+    <motion.main className="works-page" initial={{ opacity: 0 }} animate={{ opacity: changingRoute ? 0 : 1 }} transition={{ duration: 0.5 }}>
+      <section className="works-wheel-side" aria-label="Project selector">
+        <Box className="works-wheel-heading">
+          <Typography component="h1" sx={{ fontFamily: MilkerFont.style.fontFamily, fontSize: "clamp(3.6rem, 6vw, 7rem)", lineHeight: 1, color: "#C8C2CF" }}>Projects</Typography>
+          <Typography sx={{ fontFamily: SofiaProFont.style.fontFamily, color: "#f1c2d6", fontSize: "1.15rem" }}>Turn the wheel to explore my work.</Typography>
         </Box>
-    );
+
+        <div className="works-wheel-stage" ref={stageRef}>
+          <motion.div className="works-wheel-ring" style={{ width: radius * 2, height: radius * 2, marginLeft: -radius, marginTop: -radius }} animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 75, ease: "linear" }} aria-hidden="true" />
+          <div className="works-wheel-inner" style={{ fontFamily: MilkerFont.style.fontFamily }} aria-hidden="true">{String(activeIndex + 1).padStart(2, "0")}<span> / {String(count).padStart(2, "0")}</span></div>
+          <motion.div className="works-wheel-rotor" animate={{ rotate: -turn * step }} transition={{ type: "spring", stiffness: 85, damping: 18 }}>
+          {projects.map((project, index) => {
+            const forward = (index - activeIndex + count) % count;
+            const relative = forward > count / 2 ? forward - count : forward;
+            const visible = count <= 5 || Math.abs(relative) <= 2;
+            return (
+              <div
+                key={project.id}
+                className="works-wheel-position"
+                aria-hidden={!visible}
+                style={{ transform: `rotate(${index * step}deg) translateX(${radius}px)`, zIndex: index === activeIndex ? 2 : 1 }}
+              >
+                <motion.div className="works-wheel-upright" animate={{ rotate: turn * step - index * step, opacity: visible ? 1 : 0, scale: index === activeIndex ? 1.08 : 0.88 }} transition={{ type: "spring", stiffness: 85, damping: 18 }} style={{ pointerEvents: visible ? "auto" : "none" }}>
+                <RotatingDiv>
+                  <button type="button" className={`works-wheel-item ${index === activeIndex ? "is-active" : ""}`} style={{ fontFamily: MilkerFont.style.fontFamily }} onClick={() => selectProject(index)} aria-label={`View ${project.title}`} aria-pressed={index === activeIndex} tabIndex={visible ? 0 : -1}>
+                    <span className="works-wheel-item-number">{String(index + 1).padStart(2, "0")}</span>
+                    <span className="works-wheel-item-title">{project.shortTitle}</span>
+                  </button>
+                </RotatingDiv>
+                </motion.div>
+              </div>
+            );
+          })}
+          </motion.div>
+        </div>
+
+        <Box className="works-wheel-footer">
+          <Typography sx={{ fontFamily: SofiaProFont.style.fontFamily, color: "#C8C2CF", fontSize: "1rem" }}>← → &nbsp; Browse projects</Typography>
+          <Box sx={{ display: "flex", gap: 2 }}>
+            <RotatingDiv><IconButton className="works-wheel-control" aria-label="Previous project" onClick={() => selectProject((activeIndexRef.current - 1 + count) % count, -1)}><ChevronLeftIcon /></IconButton></RotatingDiv>
+            <RotatingDiv><IconButton className="works-wheel-control" aria-label="Next project" onClick={() => selectProject((activeIndexRef.current + 1) % count, 1)}><ChevronRightIcon /></IconButton></RotatingDiv>
+          </Box>
+        </Box>
+      </section>
+
+      <section className="works-detail-side" aria-label="Selected project" style={{ fontFamily: SofiaProFont.style.fontFamily }}>
+        <AnimatePresence mode="wait">
+          <motion.div key={activeProject.id} className="works-detail" initial={{ opacity: 0, x: 45 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -45 }} transition={{ duration: 0.35 }}>
+            <Typography className="works-detail-index" sx={{ fontFamily: MilkerFont.style.fontFamily }}>{String(activeIndex + 1).padStart(2, "0")}<span> / {String(count).padStart(2, "0")}</span></Typography>
+            <Typography sx={{ fontFamily: SofiaProFont.style.fontFamily, color: "#0f402b", fontSize: "1.1rem", mt: 3 }}>{activeProject.kind} · {activeProject.year}</Typography>
+            <Typography component="h2" sx={{ fontFamily: MilkerFont.style.fontFamily, fontSize: "clamp(3.2rem, 5vw, 6rem)", lineHeight: 1, mt: 1, color: "#101214" }}>{activeProject.title}</Typography>
+            <Typography sx={{ fontFamily: SofiaProFont.style.fontFamily, color: "#0f402b", fontSize: "1.15rem", mt: 1 }}>{activeProject.place}</Typography>
+            <Typography className="works-summary" sx={{ fontFamily: SofiaProFont.style.fontFamily }}>{activeProject.summary}</Typography>
+            <Box className="works-topics">{activeProject.topics.map((topic) => <span key={topic}>{topic}</span>)}</Box>
+            <Box className="works-contributions">
+              <Typography component="h3" sx={{ fontFamily: MilkerFont.style.fontFamily, fontSize: "1.8rem", color: "#0f402b" }}>{activeProject.contributionLabel}</Typography>
+              <ul>{activeProject.contributions.map((item) => <li key={item}>{item}</li>)}</ul>
+            </Box>
+            <Box className="works-links">
+              {activeProject.github && <ResourceLink href={activeProject.github} label="GitHub" />}
+              {activeProject.slides && <ResourceLink href={activeProject.slides} label="Slides" />}
+              {activeProject.report && <ResourceLink href={activeProject.report} label="Report" />}
+            </Box>
+          </motion.div>
+        </AnimatePresence>
+      </section>
+    </motion.main>
+  );
 }

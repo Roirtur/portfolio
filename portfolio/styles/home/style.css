@@ -103,3 +103,16 @@
   display: block;
   height: 1em;
 }
+
+.typed-heading {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  max-width: 100%;
+  animation: type-heading .7s steps(20, end) .5s forwards;
+}
+
+@keyframes type-heading {
+  to { width: 20ch; }
+}

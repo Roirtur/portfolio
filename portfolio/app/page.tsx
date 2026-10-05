@@ -7,15 +7,13 @@ import { useEffect, useState } from "react";
 import "@/styles/home/style.css"
 import { MilkerFont } from "@/styles/theme";
 import HomeBackground from "@/components/home/HomeBackground";
-import { ReactTyped } from "react-typed";
 import Socials from "@/components/home/Socials";
 import AboutMe from "@/components/home/AboutMe";
-import Skills from "@/components/home/Skills";
-import Education from "@/components/home/Eduaction";
+import Education from "@/components/home/Education";
+import ProjectPreview from "@/components/home/ProjectPreview";
 
 export default function Home() {
   const [changingRoute, setChangingRoute] = useState<boolean>(false);
-  const [loaded, setLoaded] = useState<boolean>(false);
 
   useEffect(() => {
     const handler = (data: string) => {
@@ -27,14 +25,6 @@ export default function Home() {
     return () => {
       events.off("routeChanged", handler);
     };
-  }, []);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoaded(true);
-    }, 1);
-
-    return () => clearTimeout(timer);
   }, []);
 
   const nameAnimation = {
@@ -122,7 +112,7 @@ export default function Home() {
           <AboutMe pageChanging={changingRoute} />
         </Box>
         <Box>
-          <Skills pageChanging={changingRoute} />
+          <ProjectPreview pageChanging={changingRoute} />
         </Box>
         <motion.div
           style={{ position: "relative" }}

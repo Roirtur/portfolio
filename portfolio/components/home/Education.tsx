@@ -8,7 +8,7 @@ const educationData = [
     {
         institution: 'Université de Bordeaux',
         degree: "Master's degree - Artificial Intelligence",
-        year: '2024 - Current',
+        year: '2024 - 2026',
         logo: 'https://agir.u-bordeaux.fr/build/images/logo/logo_carre.svg',
     },
     {
@@ -26,7 +26,7 @@ const educationData = [
 ];
 
 const Education: React.FC<{ pageChanged: boolean }> = ({ pageChanged }) => {
-    const [hoveredIndex, setHoveredIndex] = useState<number | null>(0);
+    const [hoveredIndex, setHoveredIndex] = useState(0);
 
     return (
         <Box sx={{ px: 6, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', height: '100%' }}>
@@ -45,7 +45,7 @@ const Education: React.FC<{ pageChanged: boolean }> = ({ pageChanged }) => {
                     Education
                 </Box>
             </motion.div>
-            <List sx={{ display: 'flex', flexDirection: 'row', gap: 2 }}>
+            <List sx={{ display: 'flex', flexDirection: 'row', gap: 2, width: '100%', minWidth: 0 }}>
                 {educationData.map((edu, index) => (
                     <motion.div
                         key={index}
@@ -55,9 +55,11 @@ const Education: React.FC<{ pageChanged: boolean }> = ({ pageChanged }) => {
                         exit={{ y: '400%', opacity: 0 }}
                         transition={{ duration: 0.5, delay: pageChanged ? 0 : 1.2 + index * 0.2, ease: 'easeOut' }}
                         style={{
-                            width: hoveredIndex === index ? "65%" : "calc(70px + 16px)",
-                            transition: 'width 0.5s ease-in-out',
+                            flex: hoveredIndex === index ? '1 1 0%' : '0 0 86px',
+                            minWidth: hoveredIndex === index ? '86px' : '86px',
+                            transition: 'flex 0.5s ease-in-out',
                             height: "calc(70px + 16px)",
+                            overflow: 'hidden',
                         }}
                     >
                         <Paper
@@ -73,7 +75,7 @@ const Education: React.FC<{ pageChanged: boolean }> = ({ pageChanged }) => {
                                 p: 1,
                             }}
                         >
-                            <Image src={edu.logo} alt={`${edu.institution} logo`} width={70} height={70} />
+                            <Image src={edu.logo} alt={`${edu.institution} logo`} width={70} height={70} style={{ flexShrink: 0 }} />
                             <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', whiteSpace: 'nowrap' }}>
                                 <ListItem sx={{ padding: 0, opacity: hoveredIndex === index ? 1 : 0, transition: 'opacity 0.5s ease-in-out' }}>
                                     <ListItemText

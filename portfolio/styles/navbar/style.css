@@ -18,7 +18,6 @@
 
 .horizontal,
 .vertical {
-    /* transition-duration: 2s; */
     transition: width 0.3s cubic-bezier(.52, .14, .45, .97) 0.1s, height 0.3s cubic-bezier(.52, .14, .45, .97) 0.1s !important;
 }
 
@@ -122,11 +121,6 @@
     filter: invert(1);
 }
 
-.nav-item .text {
-    transition: color 0s;
-    color: #C8C2CF;
-}
-
 .nav-item:hover .vertical,
 .nav-item.active .vertical,
 .nav-item:hover .horizontal,
@@ -134,4 +128,19 @@
     filter: invert(1);
     background-color: #101214;
     transition-delay: 0s;
+}
+
+.nav-item.content-link .text {
+    color: #101214;
+}
+
+.nav-item.content-link:hover .text,
+.nav-item.content-link:focus-visible .text {
+    color: #101214;
+    filter: invert(1);
+}
+
+.nav-item.content-link:focus-visible .revert-colors {
+    width: calc(100% + 15px);
+    height: calc(100% + 15px);
 }
