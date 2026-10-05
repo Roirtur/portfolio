@@ -42,6 +42,7 @@
 .is-compact .works-wheel-item:focus-visible { background: #0f402b; color: #f1c2d6; }
 .is-compact .works-wheel-item-number { color: #f1c2d6; font-size: var(--compact-number-size); }
 .is-compact .works-wheel-item-title { font-size: var(--compact-title-size); }
+.is-compact .works-wheel-item-kind { color: #f1c2d6; }
 
 .works-wheel-ring,
 .works-wheel-inner,
@@ -120,6 +121,7 @@
 
 .works-wheel-item-number { font-size: .9rem; color: #0f402b; }
 .works-wheel-item-title { max-width: 100%; font-size: 1.7rem; line-height: 1; white-space: normal; overflow-wrap: anywhere; }
+.works-wheel-item-kind { max-width: 100%; margin-top: .35rem; color: #0f402b; font-size: .8rem; font-weight: 600; line-height: 1.2; }
 
 .works-wheel-footer {
   position: relative;

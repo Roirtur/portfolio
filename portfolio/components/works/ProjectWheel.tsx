@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import RotatingDiv from "@/components/Rotate";
 import { projects } from "@/components/works/projects";
-import { MilkerFont } from "@/styles/theme";
+import { MilkerFont, SofiaProFont } from "@/styles/theme";
 import "@/styles/works/style.css";
 
 export default function ProjectWheel({ activeIndex, turn, onSelect, compact = false }: { activeIndex: number; turn: number; onSelect: (index: number) => void; compact?: boolean }) {
@@ -56,9 +56,10 @@ export default function ProjectWheel({ activeIndex, turn, onSelect, compact = fa
               <motion.div className="works-wheel-upright" animate={{ rotate: turn * step - index * step, opacity: visible ? 1 : 0, scale: index === activeIndex && !compact ? 1.08 : 0.88 }} transition={{ type: "spring", stiffness: 85, damping: 18 }} style={{ pointerEvents: visible ? "auto" : "none" }}>
                 <div className="works-wheel-card-anchor">
                   <RotatingDiv>
-                    <button type="button" className={`works-wheel-item ${index === activeIndex && !compact ? "is-active" : ""}`} style={{ fontFamily: MilkerFont.style.fontFamily }} onClick={() => onSelect(index)} aria-label={compact ? `Open ${project.title}` : `View ${project.title}`} aria-pressed={compact ? undefined : index === activeIndex} tabIndex={visible ? 0 : -1}>
+                    <button type="button" className={`works-wheel-item ${index === activeIndex && !compact ? "is-active" : ""}`} style={{ fontFamily: MilkerFont.style.fontFamily }} onClick={() => onSelect(index)} aria-label={`${compact ? "Open" : "View"} ${project.title}, ${project.kind}`} aria-pressed={compact ? undefined : index === activeIndex} tabIndex={visible ? 0 : -1}>
                       <span className="works-wheel-item-number">{String(index + 1).padStart(2, "0")}</span>
                       <span className="works-wheel-item-title">{project.shortTitle}</span>
+                      <span className="works-wheel-item-kind" style={{ fontFamily: SofiaProFont.style.fontFamily }}>{project.kind}</span>
                     </button>
                   </RotatingDiv>
                 </div>
