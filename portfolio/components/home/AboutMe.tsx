@@ -57,7 +57,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ pageChanging }) => {
                             style={{ color: "#0f402b", textDecoration: "underline" }}
                         >
                             Université de Bordeaux
-                        </a> in 2026, including a research internship with the FLOWERS team at Inria Bordeaux. I also have two years of software engineering experience.
+                        </a> in 2026, including a research internship with the FLOWERS team at Inria Bordeaux. I also have two years of software engineering experience and spent two years tutoring programming students.
                     </Box>
                     <Box component="p" sx={{ m: 0, mb: 1.5 }}>
                         I&apos;d love to work on AI connected to art, creativity, artificial life, or evolutionary AI.
