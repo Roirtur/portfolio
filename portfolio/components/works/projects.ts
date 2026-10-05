@@ -4,13 +4,14 @@ export type Project = {
   shortTitle: string;
   kind: string;
   place: string;
-  year: string;
+  year?: string;
   summary: string[];
   contributionLabel: string;
   contributions: string[];
   topics: string[];
   github?: string;
   slides?: string;
+  slidesLanguage?: string;
   report?: string;
 };
 
@@ -64,5 +65,23 @@ export const projects: Project[] = [
     github: "https://github.com/Roirtur/multi-expert-peptide-pipeline",
     slides: "/portfolio/docs/diapo_peptides.pdf",
     report: "/portfolio/docs/report_peptides.pdf",
+  },
+  {
+    id: "ontology",
+    title: "ShSl Ontology",
+    shortTitle: "ShSl Ontology",
+    kind: "University project",
+    place: "Université de Bordeaux / academic project",
+    summary: [
+      "The two of us built a small OWL ontology for the power system in Shadow Slave. We modelled entities, objects, ranks and soul cores, then used a reasoner to see what it could infer from the properties we gave it. The parts the story leaves unclear showed us where the model needed more information.",
+    ],
+    contributionLabel: "What we did",
+    contributions: [
+      "We put together the main classes, properties and rules for the entity and power systems.",
+      "We tested the inferences and simplified the model where strict counts and equality statements slowed the reasoner down.",
+    ],
+    topics: ["OWL", "Knowledge representation", "Automated reasoning"],
+    slides: "/portfolio/docs/ontology.pdf",
+    slidesLanguage: "French",
   },
 ];

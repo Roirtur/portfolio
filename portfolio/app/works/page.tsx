@@ -87,7 +87,7 @@ export default function Works() {
           <motion.div key={activeProject.id} className="works-detail" initial={{ opacity: 0, x: 45 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -45 }} transition={{ duration: 0.35 }}>
             <Box className="works-detail-topline" sx={{ fontFamily: MilkerFont.style.fontFamily }}>
               <Typography className="works-detail-index" sx={{ fontFamily: MilkerFont.style.fontFamily }}>{String(activeIndex + 1).padStart(2, "0")}<span> / {String(count).padStart(2, "0")}</span></Typography>
-              <Typography className="works-detail-year" sx={{ fontFamily: MilkerFont.style.fontFamily }}>{activeProject.year}</Typography>
+              {activeProject.year && <Typography className="works-detail-year" sx={{ fontFamily: MilkerFont.style.fontFamily }}>{activeProject.year}</Typography>}
             </Box>
             <Typography className="works-detail-kind" sx={{ fontFamily: MilkerFont.style.fontFamily }}>{activeProject.kind}</Typography>
             <OutlinedHeading component="h2" className="works-detail-title">{activeProject.title}</OutlinedHeading>
@@ -105,7 +105,7 @@ export default function Works() {
             </Box>
             <Box className="works-links">
               {activeProject.github && <ResourceLink href={activeProject.github} label="GitHub" />}
-              {activeProject.slides && <ResourceLink href={activeProject.slides} label="Slides" />}
+              {activeProject.slides && <ResourceLink href={activeProject.slides} label={activeProject.slidesLanguage ? `Slides (${activeProject.slidesLanguage})` : "Slides"} />}
               {activeProject.report && <ResourceLink href={activeProject.report} label="Report" />}
             </Box>
           </motion.div>

@@ -37,8 +37,7 @@
 
 .is-compact .works-wheel-ring { border-color: #0f402b; opacity: .75; }
 .is-compact .works-wheel-inner { width: var(--compact-center-size); height: var(--compact-center-size); color: #0f402b; font-size: 1.1rem; }
-.is-compact .works-wheel-upright > div { width: var(--compact-card-width); margin-left: var(--compact-card-offset-x); margin-top: var(--compact-card-offset-y); }
-.is-compact .works-wheel-item { width: var(--compact-card-width); min-height: var(--compact-card-height); padding: .8rem 1.15rem; border-radius: 14px; background: #101214; color: #C8C2CF; }
+.is-compact .works-wheel-item { min-width: var(--compact-card-min-width); min-height: var(--compact-card-height); padding: .8rem 1.15rem; border-radius: 14px; background: #101214; color: #C8C2CF; }
 .is-compact .works-wheel-item:hover,
 .is-compact .works-wheel-item:focus-visible { background: #0f402b; color: #f1c2d6; }
 .is-compact .works-wheel-item-number { color: #f1c2d6; font-size: var(--compact-number-size); }
@@ -83,10 +82,13 @@
   height: 0;
 }
 
-.works-wheel-upright > div {
-  width: 11rem;
-  margin-left: -5.5rem;
-  margin-top: -3.25rem;
+.works-wheel-card-anchor {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: max-content;
+  max-width: var(--wheel-card-max-width);
+  transform: translate(-50%, -50%);
 }
 
 .works-wheel-item {
@@ -94,7 +96,9 @@
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  width: 11rem;
+  width: max-content;
+  min-width: min(11rem, var(--wheel-card-max-width));
+  max-width: var(--wheel-card-max-width);
   min-height: 6.5rem;
   padding: 1rem 1.3rem;
   border: 0;
@@ -115,7 +119,7 @@
 }
 
 .works-wheel-item-number { font-size: .9rem; color: #0f402b; }
-.works-wheel-item-title { font-size: 1.7rem; line-height: 1; }
+.works-wheel-item-title { max-width: 100%; font-size: 1.7rem; line-height: 1; white-space: normal; overflow-wrap: anywhere; }
 
 .works-wheel-footer {
   position: relative;
@@ -249,7 +253,6 @@
 @media (max-width: 1200px) {
   .works-wheel-heading { padding-left: 2.5rem; }
   .works-wheel-footer { padding-left: 2.5rem; padding-right: 2.5rem; }
-  .works-wheel-item { width: 9rem; min-height: 5.5rem; }
-  .works-wheel-upright > div { width: 9rem; margin-left: -4.5rem; margin-top: -2.75rem; }
+  .works-wheel-item { min-width: min(9rem, var(--wheel-card-max-width)); min-height: 5.5rem; }
   .works-wheel-item-title { font-size: 1.4rem; }
 }

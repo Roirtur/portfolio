@@ -17,7 +17,7 @@ export default function ProjectPreview({ pageChanging }: { pageChanging: boolean
       transition={{ duration: 0.7, delay: pageChanging ? 0 : 0.7 }}
       className="home-project-preview"
     >
-      <div className="home-project-preview-heading"><OutlinedHeading>Projects</OutlinedHeading></div>
+      <div className="home-project-preview-heading"><OutlinedHeading>My Projects</OutlinedHeading></div>
       <ProjectWheel activeIndex={0} turn={0} compact onSelect={(index) => router.push(`/works?project=${projects[index].id}`)} />
     </motion.div>
   );
