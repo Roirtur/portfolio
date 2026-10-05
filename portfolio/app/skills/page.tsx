@@ -45,7 +45,7 @@ export default function SkillsPage() {
             These are the tools and languages I&apos;ve picked up through my jobs, internships, and studies.
           </Typography>
           <Box component="section" className="skills-experience" aria-labelledby="skills-experience-heading">
-            <Typography component="h2" id="skills-experience-heading" sx={{ fontFamily: MilkerFont.style.fontFamily, mt: 3 }}>Experience</Typography>
+            <Typography component="h2" id="skills-experience-heading" sx={{ fontFamily: MilkerFont.style.fontFamily, mt: 1.8 }}>Experience</Typography>
             <Box component="ul" className="skills-experience-list">
               {experience.map((job) => (
                 <Box component="li" key={`${job.employer}-${job.role}`} sx={{ fontFamily: SofiaProFont.style.fontFamily }}>

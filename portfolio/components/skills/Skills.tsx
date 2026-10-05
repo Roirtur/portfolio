@@ -13,12 +13,15 @@ const research: Skill[] = [
   { name: "PyTorch", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg", link: "https://pytorch.org/" },
   { name: "Scikit-learn", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg", link: "https://scikit-learn.org/" },
   { name: "NumPy", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg", link: "https://numpy.org/" },
+  { name: "Matplotlib", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/matplotlib/matplotlib-original.svg", link: "https://matplotlib.org/" },
+  { name: "OWL", image: "/portfolio/owl.png", link: "https://www.w3.org/OWL/" },
   { name: "Jupyter", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jupyter/jupyter-original.svg", link: "https://jupyter.org/" },
+  { name: "Linux", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg", link: "https://www.kernel.org/" },
   { name: "Git", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", link: "https://git-scm.com/" },
-  { name: "C", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg", link: "https://en.wikipedia.org/wiki/C_(programming_language)" },
 ];
 
 const otherSkills: Skill[] = [
+  { name: "C", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg", link: "https://en.wikipedia.org/wiki/C_(programming_language)" },
   { name: "Qiskit", image: "https://upload.wikimedia.org/wikipedia/commons/5/51/Qiskit-Logo.svg", link: "https://qiskit.org/" },
   { name: "Docker", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg", link: "https://www.docker.com/" },
   { name: "SQL", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg", link: "https://www.mysql.com/" },
@@ -31,6 +34,7 @@ const otherSkills: Skill[] = [
   { name: "NextJS", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg", link: "https://nextjs.org/" },
   { name: "Node.js", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg", link: "https://nodejs.org/" },
   { name: "Django", image: "https://www.svgrepo.com/show/353657/django-icon.svg", link: "https://www.djangoproject.com/" },
+  { name: "Flask", image: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg", link: "https://flask.palletsprojects.com/" },
   { name: "GraphQL", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/graphql/graphql-plain.svg", link: "https://graphql.org/" },
   { name: "AWS", image: "https://cdn.worldvectorlogo.com/logos/amazon-web-services-2.svg", link: "https://aws.amazon.com/" },
   { name: "Angular", image: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg", link: "https://angular.io/" },
