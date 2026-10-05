@@ -52,40 +52,25 @@ const HomeBackground: React.FC<HomeBackgroundProps> = ({ changingRoute }) => {
     });
 
     const lines = [
-        { top: "20vh", left: "140px", width: '4px', height: 'calc(100% - 20vh)', animation: verticalAnimation(0.3, 'down'), offset: '16', duration: '60s', orientation: 'vertical', direction: 'normal', zIndex: -1 },
-        { top: "20vh", left: "270px", width: '4px', height: 'calc(100% - 20vh)', animation: verticalAnimation(0.6, 'up'), offset: '63', duration: '60s', orientation: 'vertical', direction: 'reverse', zIndex: -1 },
-        { left: "950px", width: '4px', height: '100%', animation: verticalAnimation(0.6, 'down'), offset: '93', duration: '60s', orientation: 'vertical', direction: 'normal', zIndex: 1 },
-        { top: "19.8vh", left: "270px", width: 'calc(100% - 270px)', height: '4px', animation: horizontalAnimation(0.3, 'right'), offset: '93', duration: '60s', orientation: 'horizontal', direction: 'normal', zIndex: 1 },
-        { top: "19.8vh", left: 0, width: '140px', height: '4px', animation: horizontalAnimation(0.3, 'right'), offset: '93', duration: '6s', orientation: 'horizontal', direction: 'normal', zIndex: 1 },
-        { top: "calc(54.1vh + 19.8vh)", left: 0, width: '100%', height: '4px', animation: horizontalAnimation(0.6, 'left'), offset: '68', duration: '60s', orientation: 'horizontal', direction: 'reverse', zIndex: 1 },
+        { className: 'home-border-column-one', animation: verticalAnimation(0.3, 'down'), offset: '16', duration: '60s', orientation: 'vertical', direction: 'normal', zIndex: -1 },
+        { className: 'home-border-column-two', animation: verticalAnimation(0.6, 'up'), offset: '63', duration: '60s', orientation: 'vertical', direction: 'reverse', zIndex: -1 },
+        { className: 'home-border-column-three', animation: verticalAnimation(0.6, 'down'), offset: '93', duration: '60s', orientation: 'vertical', direction: 'normal', zIndex: 1 },
+        { className: 'home-border-header-right', animation: horizontalAnimation(0.3, 'right'), offset: '93', duration: '60s', orientation: 'horizontal', direction: 'normal', zIndex: 1 },
+        { className: 'home-border-header-left', animation: horizontalAnimation(0.3, 'right'), offset: '93', duration: '6s', orientation: 'horizontal', direction: 'normal', zIndex: 1 },
+        { className: 'home-border-middle', animation: horizontalAnimation(0.6, 'left'), offset: '68', duration: '60s', orientation: 'horizontal', direction: 'reverse', zIndex: 1 },
     ];
 
     return (
-        <Box
-            sx={{
-                position: 'absolute',
-                top: 0,
-                width: '100%',
-                height: '100%',
-                pointerEvents: 'none',
-                overflow: 'hidden',
-            }}
-        >
+        <Box className="home-background" aria-hidden="true">
             {lines.map((line, index) => (
                 <motion.div
                     key={index}
+                    className={`home-border-line is-${line.orientation} ${line.className}`}
                     initial="hidden"
                     animate={changingRoute ? "exit" : "visible"}
                     variants={line.animation}
                     style={{
-                        mixBlendMode: "difference",
-                        filter: "invert(1)",
-                        position: 'absolute',
-                        top: line.top || 0,
-                        left: line.left,
                         zIndex: line.zIndex,
-                        width: line.width,
-                        height: line.height,
                         backgroundImage: `url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='black' stroke-width='2' stroke-dasharray='10 20 30' stroke-dashoffset='${line.offset}' stroke-linecap='square'/%3e%3c/svg%3e")`,
                         animation: line.orientation === 'vertical'
                             ? `moveVerticalBackground${line.direction === 'reverse' ? 'Reverse' : ''} ${line.duration} linear infinite`

@@ -44,10 +44,10 @@ export default function Home() {
   };
 
   return (
-    <Box sx={{ display: "flex", justifyContent: "start", width: "100vw", flexDirection: "column", alignItems: "start", overflow: "hidden" }}
-      className={`main-box-home`}>
+    <Box className="main-box-home">
       <HomeBackground changingRoute={changingRoute} />
       <motion.div
+        className="home-name-wrapper"
         key="name"
         initial="hidden"
         animate={changingRoute ? "exit" : "visible"}
@@ -73,18 +73,7 @@ export default function Home() {
           </motion.div>
         </Box>
       </motion.div>
-      <Box sx={{
-        display: "grid",
-        gridTemplateColumns: "var(--home-grid-columns)",
-        gridTemplateRows: { 
-          xs: "minmax(250px, 1fr) minmax(150px, auto)",
-          sm: "minmax(300px, 1fr) minmax(180px, auto)",
-          md: "minmax(350px, 1fr) minmax(200px, auto)",
-          lg: `minmax(400px, calc(80vh - 20vh)) minmax(200px, calc(20vh))`
-        },
-        width: "100vw",
-        height: { xs: "85vh", sm: "82vh", md: "80vh" },
-        overflow: "hidden",
+      <Box className="home-content-grid" sx={{
         "& > *": {
           overflow: "hidden"
         },
