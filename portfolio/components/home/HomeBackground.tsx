@@ -1,22 +1,54 @@
 import React from 'react';
 import { Box } from '@mui/material';
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 interface HomeBackgroundProps {
     changingRoute: boolean;
 }
 
 const HomeBackground: React.FC<HomeBackgroundProps> = ({ changingRoute }) => {
-    const verticalAnimation = (delay: number, direction: 'up' | 'down') => ({
+    const verticalAnimation = (delay: number, direction: 'up' | 'down'): Variants => ({
         hidden: { opacity: 0, y: direction === 'up' ? '-100vh' : '100vh' },
-        visible: { opacity: 1, y: 0, transition: { duration: 3, delay, ease: [0.21, 0.54, 0, 0.9] } },
-        exit: { opacity: 0, y: direction === 'up' ? '-100vh' : '100vh', transition: { duration: 0.3, delay: delay / 2, ease : "easeIn" } }
+        visible: { 
+            opacity: 1, 
+            y: 0, 
+            transition: { 
+                duration: 3, 
+                delay, 
+                ease: "easeOut" 
+            } 
+        },
+        exit: { 
+            opacity: 0, 
+            y: direction === 'up' ? '-100vh' : '100vh', 
+            transition: { 
+                duration: 0.3, 
+                delay: delay / 2, 
+                ease: "easeIn" 
+            } 
+        }
     });
 
-    const horizontalAnimation = (delay: number, direction: 'left' | 'right') => ({
+    const horizontalAnimation = (delay: number, direction: 'left' | 'right'): Variants => ({
         hidden: { opacity: 0, x: direction === 'left' ? '-100vw' : '100vw' },
-        visible: { opacity: 1, x: 0, transition: { duration: 3, delay, ease: [0.21, 0.54, 0, 1] } },
-        exit: { opacity: 0, x: direction === 'left' ? '-100vw' : '100vw', transition: { duration: 0.3, delay: delay / 2, ease : "easeIn" } }
+        visible: { 
+            opacity: 1, 
+            x: 0, 
+            transition: { 
+                duration: 3, 
+                delay, 
+                ease: "easeOut" 
+            } 
+        },
+        exit: { 
+            opacity: 0, 
+            x: direction === 'left' ? '-100vw' : '100vw', 
+            transition: { 
+                duration: 0.3, 
+                delay: delay / 2, 
+                ease: "easeIn" 
+            } 
+        }
     });
 
     const lines = [

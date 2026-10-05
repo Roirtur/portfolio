@@ -9,6 +9,7 @@ import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 import events from "@/scripts/events";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 
 export default function RootLayout({
   children,
@@ -44,16 +45,18 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body>
-        <ThemeProviderWrapper>
-          {isMobile ? (
-            <MobileWarning />
-          ) : (
-            <>
-              <Navbar onRouteChange={handleRouteChange} />
-              {children}
-            </>
-          )}
-        </ThemeProviderWrapper>
+        <AppRouterCacheProvider>
+          <ThemeProviderWrapper>
+            {isMobile ? (
+              <MobileWarning />
+            ) : (
+              <>
+                <Navbar onRouteChange={handleRouteChange} />
+                {children}
+              </>
+            )}
+          </ThemeProviderWrapper>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

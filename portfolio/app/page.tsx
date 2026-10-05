@@ -5,7 +5,7 @@ import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import "@/styles/home/style.css"
-import { MilkerFont, SofiaProFont } from "@/styles/theme";
+import { MilkerFont } from "@/styles/theme";
 import HomeBackground from "@/components/home/HomeBackground";
 import { ReactTyped } from "react-typed";
 import Socials from "@/components/home/Socials";
@@ -42,12 +42,11 @@ export default function Home() {
     visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" as const, delay: 0.2 } },
     exit: { y: -200, opacity: 0, transition: { duration: 0.5, ease: "easeIn" as const } },
   };
-  const name2Animation = {
+  const verticalNameAnimation = {
     hidden: { x: -200, opacity: 0 },
     visible: { x: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" as const, delay: 0.2 } },
     exit: { x: -200, opacity: 0, transition: { duration: 0.5, ease: "easeIn" as const } },
   };
-
   const headerAnimation = {
     hidden: { y: -200, opacity: 0 },
     visible: { y: 0, opacity: 1, transition: { duration: 0.8, ease: "easeOut" as const } },
@@ -64,58 +63,29 @@ export default function Home() {
         animate={changingRoute ? "exit" : "visible"}
         variants={headerAnimation}
       >
-        <Box sx={{
-          textAlign: "end",
-          fontWeight: "fontWeightRegular",
-          fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "flex-end",
-          gap: 2,
-          height: { xs: "15vh", sm: "18vh", md: "20vh" },
-          width: "100vw",
-          pb: 1,
-          backgroundColor: "#101214",
-          pl: { xs: 2, sm: 4, md: 6 },
-          position: "relative",
-        }}>
+        <Box className="home-name-header">
           <motion.div
-            key="name"
             initial="hidden"
             animate={changingRoute ? "exit" : "visible"}
             variants={nameAnimation}
-            style={{ mixBlendMode: "difference", color: "#E8E2F6", userSelect: "none", position: "absolute", left: "3%", top: "50%", transform: "translateY(-50%)" }}
+            className="home-name-mark"
           >
             <Typography
-              variant="h1"
-              sx={{
-                fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
-                fontSize: "7rem",
-                userSelect: "none",
-                letterSpacing: 7,
-                alignContent: "bottom",
-                lineHeight: "0.6",
-              }}
-              className={`home-title`}
+              component="h1"
+              aria-label="Arthur Macdonald"
+              className={`home-title ${MilkerFont.className}`}
+              style={{ fontFamily: MilkerFont.style.fontFamily }}
             >
-              M<span style={{
-                color: "#0f402b",
-                textShadow: "2px 2px 0 #f1c2d6, 2px 2px 0 #f1c2d6, 2px -2px 0 #f1c2d6, -2px 2px 0 #f1c2d6, -2px -2px 0 #f1c2d6, 2px 0px 0 #f1c2d6, 0px 2px 0 #f1c2d6, -2px 0px 0 #f1c2d6, 0px -2px 0 #f1c2d6",
-                userSelect: "none",
-              }}>a</span>cdonald
+              <span className="home-name-m" aria-hidden="true">M</span>
+              <span className="home-name-a" aria-hidden="true">A</span>
+              <span className="home-name-rest" aria-hidden="true">cdonald</span>
             </Typography>
           </motion.div>
         </Box>
       </motion.div>
       <Box sx={{
         display: "grid",
-        gridTemplateColumns: { 
-          xs: "minmax(80px, 1fr) minmax(100px, 1fr) minmax(300px, 3fr) minmax(200px, 2fr)",
-          sm: "minmax(100px, 1fr) minmax(120px, 1fr) minmax(400px, 3fr) minmax(250px, 2fr)",
-          md: "minmax(120px, 1fr) minmax(133px, 1fr) minmax(500px, 3fr) minmax(300px, 2fr)",
-          lg: "140px 133px minmax(600px, 1fr) minmax(350px, 1fr)",
-          xl: "140px 133px 680px 1fr"
-        },
+        gridTemplateColumns: "var(--home-grid-columns)",
         gridTemplateRows: { 
           xs: "minmax(250px, 1fr) minmax(150px, auto)",
           sm: "minmax(300px, 1fr) minmax(180px, auto)",
@@ -128,11 +98,6 @@ export default function Home() {
         "& > *": {
           overflow: "hidden"
         },
-        "& > :nth-of-type(2)": {
-          display: "flex",
-          alignItems: "flex-start",
-          justifyContent: "center"
-        },
         "& > :nth-of-type(3), & > :nth-of-type(4), & > :nth-of-type(7), & > :nth-of-type(8)": {
           display: "flex",
           alignItems: "center",
@@ -142,42 +107,16 @@ export default function Home() {
         <Box>
         </Box>
         <motion.div
-          key="fname"
+          className="home-name-column"
           initial="hidden"
           animate={changingRoute ? "exit" : "visible"}
-          variants={name2Animation}
-          style={{ 
-            color: "#f1c2d6", 
-            writingMode: "vertical-rl", 
-            textOrientation: "upright", 
-            position: "relative", 
-            overflow: "hidden",
-            display: "flex",
-            alignItems: "flex-start",
-            justifyContent: "center",
-            width: "100%",
-            height: "100%"
-          }}
+          variants={verticalNameAnimation}
         >
-          <Typography
-            variant="h1"
-            sx={{
-              position: "absolute",
-              left: "8%",
-              top: 30,
-              fontFamily: `${MilkerFont.style.fontFamily}, Arial, sans-serif`,
-              lineHeight: "1",
-              zIndex: 1,
-              fontSize: "7rem",
-              mt: -3.2,
-              letterSpacing: "-10px", // Match the horizontal text letter spacing
-              textShadow: "2px 2px 0 #102F22, 2px 2px 0 #102F22, 2px -2px 0 #102F22, -2px 2px 0 #102F22, -2px -2px 0 #102F22, 2px 0px 0 #102F22, 0px 2px 0 #102F22, -2px 0px 0 #102F22, 0px -2px 0 #102F22",
-              userSelect: "none", // Make the text unselectable
-            }}
-            className={`home-title`}
-          >
-            rthur
-          </Typography>
+          <span className={`home-name-vertical ${MilkerFont.className}`} aria-hidden="true">
+            {"rthur".split("").map((letter, index) => (
+              <span key={index}>{letter}</span>
+            ))}
+          </span>
         </motion.div>
         <Box>
           <AboutMe pageChanging={changingRoute} />
