@@ -5,11 +5,11 @@ import RotatingDiv from '@/components/Rotate';
 import { motion } from 'framer-motion';
 
 const Socials: React.FC<{ pageChanging: boolean }> = ({ pageChanging }) => {
-    const socials = [
-        { name: 'GitHub · opens new tab', icon: <FaGithub />, link: 'https://github.com/Roirtur', external: true },
-        { name: 'LinkedIn · opens new tab', icon: <FaLinkedin />, link: 'https://fr.linkedin.com/in/arthur-macdonald-09b108266/en', external: true },
-        { name: 'Email Arthur', icon: <FaEnvelope />, link: 'mailto:arthur.macdonald.dev@gmail.com', external: false },
-        { name: 'Call [removed phone number]', icon: <FaPhone />, link: 'tel:[removed phone number]', external: false },
+    const socials: { name: string; icon: React.ReactNode; link: string; external: boolean; small?: boolean }[] = [
+        { name: 'My GitHub · opens a new tab', icon: <FaGithub />, link: 'https://github.com/Roirtur', external: true },
+        { name: 'My LinkedIn · opens a new tab', icon: <FaLinkedin />, link: 'https://fr.linkedin.com/in/arthur-macdonald-09b108266/en', external: true },
+        { name: 'Send me an email', icon: <FaEnvelope />, link: 'mailto:arthur.macdonald.dev@gmail.com', external: false, small: true },
+        { name: 'Call me · [removed phone number]', icon: <FaPhone />, link: 'tel:[removed phone number]', external: false, small: true },
     ];
 
     const socialAnimation = (index: number) => ({
@@ -62,7 +62,7 @@ const Socials: React.FC<{ pageChanging: boolean }> = ({ pageChanging }) => {
                                 },
                             }}
                         >
-                            {social.icon}
+                            <Box component="span" sx={{ display: 'inline-flex', fontSize: social.small ? '0.68em' : '1em' }}>{social.icon}</Box>
                         </IconButton>
                       </Tooltip>
                     </RotatingDiv>

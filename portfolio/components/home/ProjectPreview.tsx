@@ -1,25 +1,24 @@
-import { Box, Typography } from "@mui/material";
+"use client";
+
 import { motion } from "framer-motion";
-import { SofiaProFont } from "@/styles/theme";
-import CornerLink from "@/components/CornerLink";
+import { useRouter } from "next/navigation";
 import OutlinedHeading from "@/components/OutlinedHeading";
+import ProjectWheel from "@/components/works/ProjectWheel";
 import { projects } from "@/components/works/projects";
+import "@/styles/home/style.css";
 
 export default function ProjectPreview({ pageChanging }: { pageChanging: boolean }) {
+  const router = useRouter();
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 60 }}
       animate={pageChanging ? { opacity: 0, x: 60 } : { opacity: 1, x: 0 }}
       transition={{ duration: 0.7, delay: pageChanging ? 0 : 0.7 }}
-      style={{ width: "100%", height: "100%" }}
+      className="home-project-preview"
     >
-      <Box sx={{ height: "100%", p: 4, display: "flex", flexDirection: "column", justifyContent: "center", gap: 2 }}>
-        <OutlinedHeading>Selected projects</OutlinedHeading>
-        <Typography sx={{ fontFamily: SofiaProFont.style.fontFamily, fontSize: "clamp(1rem, 1.35vw, 1.4rem)", lineHeight: 1.4 }}>
-          Explore {projects.length} projects, including curiosity-driven discovery and agentic peptide design.
-        </Typography>
-        <Box sx={{ alignSelf: "flex-start" }}><CornerLink href="/works">Explore projects</CornerLink></Box>
-      </Box>
+      <div className="home-project-preview-heading"><OutlinedHeading>Projects</OutlinedHeading></div>
+      <ProjectWheel activeIndex={0} turn={0} compact onSelect={(index) => router.push(`/works?project=${projects[index].id}`)} />
     </motion.div>
   );
 }

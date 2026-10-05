@@ -71,7 +71,7 @@ export default function MobileWarning() {
             lineHeight: 1.2,
           }}
         >
-          Mobile Version Not Available
+          This works best on desktop
         </Typography>
         
         <Typography
@@ -86,8 +86,7 @@ export default function MobileWarning() {
             textAlign: "center",
           }}
         >
-          Sorry, but the mobile format for this portfolio is not available yet. 
-          This website is currently optimized for desktop viewing only.
+          I haven&apos;t finished the mobile version of my portfolio yet.
         </Typography>
         
         <Typography
@@ -101,7 +100,7 @@ export default function MobileWarning() {
             textAlign: "center",
           }}
         >
-          Please visit this site on a desktop or laptop computer for the best experience.
+          Please open it on a laptop or desktop for now.
         </Typography>
         
         <motion.div

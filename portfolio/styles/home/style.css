@@ -110,9 +110,27 @@
   white-space: nowrap;
   width: 0;
   max-width: 100%;
-  animation: type-heading .7s steps(20, end) .5s forwards;
+  animation: type-heading .7s steps(10, end) .5s forwards;
 }
 
 @keyframes type-heading {
-  to { width: 20ch; }
+  to { width: 11ch; }
+}
+
+.home-project-preview {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding-top: 1.5rem;
+}
+
+.home-project-preview-heading {
+  padding-left: clamp(1rem, 2vw, 2rem);
+}
+
+.home-project-preview .works-wheel-stage.is-compact {
+  flex: 1;
+  height: auto;
+  min-height: 0;
 }

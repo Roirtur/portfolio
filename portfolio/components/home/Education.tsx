@@ -7,18 +7,18 @@ import Image from 'next/image';
 const educationData = [
     {
         institution: 'Université de Bordeaux',
-        degree: "Master's degree - Artificial Intelligence",
+        degree: "Master's in Artificial Intelligence",
         year: '2024 - 2026',
         logo: 'https://agir.u-bordeaux.fr/build/images/logo/logo_carre.svg',
     },
     {
         institution: 'Université de Bordeaux',
-        degree: "Bachelor's degree - Computer Science",
+        degree: "Bachelor's in Computer Science",
         year: '2021 - 2024',
         logo: 'https://agir.u-bordeaux.fr/build/images/logo/logo_carre.svg',
     },
     {
-        institution: 'François Mauriac  High School',
+        institution: 'François Mauriac High School',
         degree: 'Baccalaureate - NSI & Mathematics',
         year: '2018 - 2021',
         logo: 'https://lyceemauriac.fr/wp-content/uploads/2016/12/fav.png',
@@ -45,7 +45,14 @@ const Education: React.FC<{ pageChanged: boolean }> = ({ pageChanged }) => {
                     Education
                 </Box>
             </motion.div>
-            <List sx={{ display: 'flex', flexDirection: 'row', gap: 2, width: '100%', minWidth: 0 }}>
+            <List sx={{
+                display: 'grid',
+                gridTemplateColumns: educationData.map((_, index) => `minmax(86px, ${hoveredIndex === index ? 100 : 0}fr)`).join(' '),
+                columnGap: 2,
+                width: '100%',
+                minWidth: 0,
+                transition: 'grid-template-columns 0.5s ease-in-out',
+            }}>
                 {educationData.map((edu, index) => (
                     <motion.div
                         key={index}
@@ -55,9 +62,8 @@ const Education: React.FC<{ pageChanged: boolean }> = ({ pageChanged }) => {
                         exit={{ y: '400%', opacity: 0 }}
                         transition={{ duration: 0.5, delay: pageChanged ? 0 : 1.2 + index * 0.2, ease: 'easeOut' }}
                         style={{
-                            flex: hoveredIndex === index ? '1 1 0%' : '0 0 86px',
-                            minWidth: hoveredIndex === index ? '86px' : '86px',
-                            transition: 'flex 0.5s ease-in-out',
+                            width: '100%',
+                            minWidth: 0,
                             height: "calc(70px + 16px)",
                             overflow: 'hidden',
                         }}

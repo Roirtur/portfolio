@@ -63,12 +63,12 @@ export default function Skills({ pageChanging }: { pageChanging: boolean }) {
     <Box sx={{ display: "flex", flexDirection: "column", gap: 6 }}>
       <section>
         <OutlinedHeading>Research &amp; AI</OutlinedHeading>
-        <Typography sx={{ fontFamily: SofiaProFont.style.fontFamily, color: '#0f402b', fontSize: '1.2rem', mb: 3 }}>Languages and tools closest to my research interests.</Typography>
+        <Typography sx={{ fontFamily: SofiaProFont.style.fontFamily, color: '#0f402b', fontSize: '1.2rem', mb: 3 }}>What I use for AI and research projects.</Typography>
         <Grid container spacing={4}>{research.map((skill, index) => <SkillTile key={skill.name} skill={skill} index={index} pageChanging={pageChanging} />)}</Grid>
       </section>
       <section>
         <OutlinedHeading>Other skills</OutlinedHeading>
-        <Typography sx={{ fontFamily: SofiaProFont.style.fontFamily, color: '#0f402b', fontSize: '1.2rem', mb: 3 }}>Languages, tools and frameworks I also use.</Typography>
+        <Typography sx={{ fontFamily: SofiaProFont.style.fontFamily, color: '#0f402b', fontSize: '1.2rem', mb: 3 }}>Things I&apos;ve used in other projects and jobs.</Typography>
         <Grid container spacing={4}>{otherSkills.map((skill, index) => <SkillTile key={skill.name} skill={skill} index={index} pageChanging={pageChanging} />)}</Grid>
       </section>
     </Box>

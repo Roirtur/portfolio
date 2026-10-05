@@ -28,6 +28,22 @@
   margin: 0 2rem;
 }
 
+.works-wheel-stage.is-compact {
+  flex: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+.is-compact .works-wheel-ring { border-color: #0f402b; opacity: .75; }
+.is-compact .works-wheel-inner { width: 4.5rem; height: 4.5rem; color: #0f402b; font-size: 1.1rem; }
+.is-compact .works-wheel-upright > div { width: 7rem; margin-left: -3.5rem; margin-top: -2.2rem; }
+.is-compact .works-wheel-item { width: 7rem; min-height: 4.4rem; padding: .55rem .8rem; border-radius: 14px; background: #101214; color: #C8C2CF; }
+.is-compact .works-wheel-item:hover,
+.is-compact .works-wheel-item:focus-visible { background: #0f402b; color: #f1c2d6; }
+.is-compact .works-wheel-item-number { color: #f1c2d6; font-size: .75rem; }
+.is-compact .works-wheel-item-title { font-size: 1.1rem; }
+
 .works-wheel-ring,
 .works-wheel-inner,
 .works-wheel-position {

@@ -8,6 +8,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import events from "@/scripts/events";
 import CornerFrame from "@/components/CornerFrame";
 import RotatingDiv from "@/components/Rotate";
+import ProjectWheel from "@/components/works/ProjectWheel";
 import { projects } from "@/components/works/projects";
 import { MilkerFont, SofiaProFont } from "@/styles/theme";
 import "@/styles/works/style.css";
@@ -27,13 +28,9 @@ export default function Works() {
   const [changingRoute, setChangingRoute] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [turn, setTurn] = useState(0);
-  const [stageSize, setStageSize] = useState(550);
-  const stageRef = useRef<HTMLDivElement>(null);
   const activeIndexRef = useRef(0);
   const activeProject = projects[activeIndex];
   const count = projects.length;
-  const radius = Math.min(stageSize * 0.31, 225);
-  const step = 360 / Math.min(count, 5);
 
   const selectProject = useCallback((target: number, direction?: number) => {
     const current = activeIndexRef.current;
@@ -52,12 +49,10 @@ export default function Works() {
   }, []);
 
   useEffect(() => {
-    const stage = stageRef.current;
-    if (!stage) return;
-    const observer = new ResizeObserver(() => setStageSize(Math.min(stage.clientWidth, stage.clientHeight)));
-    observer.observe(stage);
-    return () => observer.disconnect();
-  }, []);
+    const id = new URLSearchParams(window.location.search).get("project");
+    const index = projects.findIndex((project) => project.id === id);
+    if (index > 0) selectProject(index);
+  }, [selectProject]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -73,37 +68,9 @@ export default function Works() {
       <section className="works-wheel-side" aria-label="Project selector">
         <Box className="works-wheel-heading">
           <Typography component="h1" sx={{ fontFamily: MilkerFont.style.fontFamily, fontSize: "clamp(3.6rem, 6vw, 7rem)", lineHeight: 1, color: "#C8C2CF" }}>Projects</Typography>
-          <Typography sx={{ fontFamily: SofiaProFont.style.fontFamily, color: "#f1c2d6", fontSize: "1.15rem" }}>Turn the wheel to explore my work.</Typography>
+          <Typography sx={{ fontFamily: SofiaProFont.style.fontFamily, color: "#f1c2d6", fontSize: "1.15rem" }}>Pick a project on the wheel.</Typography>
         </Box>
-
-        <div className="works-wheel-stage" ref={stageRef}>
-          <motion.div className="works-wheel-ring" style={{ width: radius * 2, height: radius * 2, marginLeft: -radius, marginTop: -radius }} animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 75, ease: "linear" }} aria-hidden="true" />
-          <div className="works-wheel-inner" style={{ fontFamily: MilkerFont.style.fontFamily }} aria-hidden="true">{String(activeIndex + 1).padStart(2, "0")}<span> / {String(count).padStart(2, "0")}</span></div>
-          <motion.div className="works-wheel-rotor" animate={{ rotate: -turn * step }} transition={{ type: "spring", stiffness: 85, damping: 18 }}>
-          {projects.map((project, index) => {
-            const forward = (index - activeIndex + count) % count;
-            const relative = forward > count / 2 ? forward - count : forward;
-            const visible = count <= 5 || Math.abs(relative) <= 2;
-            return (
-              <div
-                key={project.id}
-                className="works-wheel-position"
-                aria-hidden={!visible}
-                style={{ transform: `rotate(${index * step}deg) translateX(${radius}px)`, zIndex: index === activeIndex ? 2 : 1 }}
-              >
-                <motion.div className="works-wheel-upright" animate={{ rotate: turn * step - index * step, opacity: visible ? 1 : 0, scale: index === activeIndex ? 1.08 : 0.88 }} transition={{ type: "spring", stiffness: 85, damping: 18 }} style={{ pointerEvents: visible ? "auto" : "none" }}>
-                <RotatingDiv>
-                  <button type="button" className={`works-wheel-item ${index === activeIndex ? "is-active" : ""}`} style={{ fontFamily: MilkerFont.style.fontFamily }} onClick={() => selectProject(index)} aria-label={`View ${project.title}`} aria-pressed={index === activeIndex} tabIndex={visible ? 0 : -1}>
-                    <span className="works-wheel-item-number">{String(index + 1).padStart(2, "0")}</span>
-                    <span className="works-wheel-item-title">{project.shortTitle}</span>
-                  </button>
-                </RotatingDiv>
-                </motion.div>
-              </div>
-            );
-          })}
-          </motion.div>
-        </div>
+        <ProjectWheel activeIndex={activeIndex} turn={turn} onSelect={selectProject} />
 
         <Box className="works-wheel-footer">
           <Typography sx={{ fontFamily: SofiaProFont.style.fontFamily, color: "#C8C2CF", fontSize: "1rem" }}>← → &nbsp; Browse projects</Typography>

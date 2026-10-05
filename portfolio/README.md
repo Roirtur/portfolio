@@ -8,7 +8,13 @@ Static Next.js portfolio with three pages:
 
 ## Add a project
 
-Add an entry to the `projects` array in `components/works/projects.ts`. The wheel, detail panel, and project count on Home update from that list. Repository, slides, and report links are optional. Put PDFs in `public/docs/` and link them with the `/portfolio/docs/` prefix for GitHub Pages.
+To add another project:
+
+1. Open `components/works/projects.ts` and add an object to the `projects` array. Copy an existing object as a starting point. Give it a unique, URL-friendly `id` and a short `shortTitle` that fits on the wheel.
+2. Fill in the title, project type (`kind`), place, year, summary, contributions, and topics in your own words. `github`, `slides`, and `report` are optional; remove any you do not have yet.
+3. If you have PDFs, put them in `public/docs/` and set their paths to `/portfolio/docs/your-file.pdf`.
+
+The Home wheel and the Projects page read that same list, so the new project appears in both places automatically. Its order in the array sets its number on the wheel.
 
 ## Development
 

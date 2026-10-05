@@ -36,32 +36,34 @@ const AboutMe: React.FC<AboutMeProps> = ({ pageChanging }) => {
                 textShadow: "2px 2px 0 #0f402b, 2px 2px 0 #0f402b, 2px -2px 0 #0f402b, -2px 2px 0 #0f402b, -2px -2px 0 #0f402b, 2px 0px 0 #0f402b, 0px 2px 0 #0f402b, -2px 0px 0 #0f402b, 0px -2px 0 #0f402b",
                 mb: 2
             }}>
-                <span className="typed-heading">AI research &amp; thesis</span>
+                <span className="typed-heading">Who am I ?</span>
             </Box>
             <Box
                 sx={{
                     fontFamily: `${SofiaProFont.style.fontFamily}, Arial, sans-serif`,
                     fontWeight: "700",
-                    fontSize: "1.3rem",
+                    fontSize: "clamp(1.05rem, 1.35vw, 1.3rem)",
                     textAlign: "justify",
                     lineHeight: 1.4,
                     mb: 2,
                 }}
             >
-                    <span>
-                        I graduated in 2026 with a master&apos;s degree in Artificial Intelligence from <a
+                    <Box component="p" sx={{ m: 0, mb: 1.5 }}>
+                        I&apos;m Arthur, 22, and I&apos;m looking for a PhD in AI. I finished my master&apos;s in AI at <a
                             href="https://www.u-bordeaux.fr"
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{ color: "#0f402b", textDecoration: "underline" }}
                         >
                             Université de Bordeaux
-                        </a>.
-                        My interests include machine learning, reinforcement learning, and symbolic AI. I am looking for a PhD thesis in AI where I can investigate challenging questions and contribute to research.
-                        <br />
-                        <br />
-                        My work includes curiosity-driven exploration at Inria FLOWERS and a multi-expert pipeline for peptide design. The projects page has code, slides, and reports for both.
-                    </span>
+                        </a> in 2026, including a research internship with the FLOWERS team at Inria Bordeaux. I also have two years of software engineering experience.
+                    </Box>
+                    <Box component="p" sx={{ m: 0, mb: 1.5 }}>
+                        I&apos;d love to work on AI connected to art, creativity, artificial life, or evolutionary AI.
+                    </Box>
+                    <Box component="p" sx={{ m: 0 }}>
+                        Outside of work, I&apos;m into music, making science easier to understand, video games, and sports.
+                    </Box>
             </Box>
         </motion.div>
     );
