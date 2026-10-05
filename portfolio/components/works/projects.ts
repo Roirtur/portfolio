@@ -21,7 +21,7 @@ export const projects: Project[] = [
     title: "adtool",
     shortTitle: "adtool",
     kind: "Research internship",
-    place: "Inria Bordeaux · FLOWERS team",
+    place: "Inria Bordeaux / FLOWERS team",
     year: "2026",
     summary: [
       "My internship at Inria Bordeaux was part of AIxIA, a project studying timing interference in multicore embedded systems. Two programs can work fine on their own, then slow each other down when they share a cache or memory controller. In a real-time system, that delay matters.",
@@ -48,7 +48,7 @@ export const projects: Project[] = [
     title: "Multi-Expert Peptide Pipeline",
     shortTitle: "Peptide",
     kind: "Final master's project",
-    place: "Université de Bordeaux · group project",
+    place: "Université de Bordeaux / group project",
     year: "2026",
     summary: [
       "For our final master's project, I worked with three classmates on a proof-of-concept pipeline for generating peptide candidates. A CVAE proposes sequences, a chemistry agent checks their properties, and a biology agent uses ESM-2 embeddings to help rank them. An orchestrator brings that feedback together over several rounds.",

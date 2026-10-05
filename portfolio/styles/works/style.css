@@ -36,13 +36,13 @@
 }
 
 .is-compact .works-wheel-ring { border-color: #0f402b; opacity: .75; }
-.is-compact .works-wheel-inner { width: 4.5rem; height: 4.5rem; color: #0f402b; font-size: 1.1rem; }
-.is-compact .works-wheel-upright > div { width: 7rem; margin-left: -3.5rem; margin-top: -2.2rem; }
-.is-compact .works-wheel-item { width: 7rem; min-height: 4.4rem; padding: .55rem .8rem; border-radius: 14px; background: #101214; color: #C8C2CF; }
+.is-compact .works-wheel-inner { width: var(--compact-center-size); height: var(--compact-center-size); color: #0f402b; font-size: 1.1rem; }
+.is-compact .works-wheel-upright > div { width: var(--compact-card-width); margin-left: var(--compact-card-offset-x); margin-top: var(--compact-card-offset-y); }
+.is-compact .works-wheel-item { width: var(--compact-card-width); min-height: var(--compact-card-height); padding: .8rem 1.15rem; border-radius: 14px; background: #101214; color: #C8C2CF; }
 .is-compact .works-wheel-item:hover,
 .is-compact .works-wheel-item:focus-visible { background: #0f402b; color: #f1c2d6; }
-.is-compact .works-wheel-item-number { color: #f1c2d6; font-size: .75rem; }
-.is-compact .works-wheel-item-title { font-size: 1.1rem; }
+.is-compact .works-wheel-item-number { color: #f1c2d6; font-size: var(--compact-number-size); }
+.is-compact .works-wheel-item-title { font-size: var(--compact-title-size); }
 
 .works-wheel-ring,
 .works-wheel-inner,
@@ -140,7 +140,7 @@
   min-width: 0;
   height: 100vh;
   overflow-y: auto;
-  padding: 12vh 4.5vw 3rem;
+  padding: clamp(4rem, 8vh, 6rem) 4.5vw 3rem;
 }
 
 .works-detail { max-width: 680px; }
@@ -148,8 +148,6 @@
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  padding-bottom: .75rem;
-  border-bottom: 1px solid #0f402b;
 }
 .works-detail-index { font: inherit; font-size: 2rem; color: #0f402b; }
 .works-detail-index span { font-size: 1rem; color: #101214; }
@@ -176,10 +174,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: .5rem 1.25rem;
-  margin-top: 2rem;
-  padding: 1rem 0;
-  border-top: 1px solid #0f402b;
-  border-bottom: 1px solid #0f402b;
+  margin-top: 1.25rem;
   color: #0f402b;
   font-size: 1.05rem;
 }
@@ -243,8 +238,6 @@
   gap: .4rem;
   margin: 0;
   line-height: 1;
-  right: -2px;
-  top: 2px;
 }
 .works-link-arrow {
   display: inline-flex;

@@ -12,6 +12,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ pageChanging }) => {
     return (
 
         <motion.div
+            className="home-raised-section"
             style={{
                 width: "100%",
                 height: "100%",

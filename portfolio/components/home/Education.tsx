@@ -29,7 +29,7 @@ const Education: React.FC<{ pageChanged: boolean }> = ({ pageChanged }) => {
     const [hoveredIndex, setHoveredIndex] = useState(0);
 
     return (
-        <Box sx={{ px: 6, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', height: '100%' }}>
+        <Box className="home-raised-section" sx={{ px: 6, display: 'flex', flexDirection: 'column', justifyContent: 'center', width: '100%', height: '100%' }}>
             <motion.div
                 initial={{ y: '400%', opacity: 0 }}
                 animate={{ y: pageChanged ? '400%' : 0, opacity: pageChanged ? 0 : 1 }}

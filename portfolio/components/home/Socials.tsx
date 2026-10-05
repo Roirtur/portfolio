@@ -6,10 +6,10 @@ import { motion } from 'framer-motion';
 
 const Socials: React.FC<{ pageChanging: boolean }> = ({ pageChanging }) => {
     const socials: { name: string; icon: React.ReactNode; link: string; external: boolean; small?: boolean }[] = [
-        { name: 'My GitHub · opens a new tab', icon: <FaGithub />, link: 'https://github.com/Roirtur', external: true },
-        { name: 'My LinkedIn · opens a new tab', icon: <FaLinkedin />, link: 'https://fr.linkedin.com/in/arthur-macdonald-09b108266/en', external: true },
+        { name: 'My GitHub / opens a new tab', icon: <FaGithub />, link: 'https://github.com/Roirtur', external: true },
+        { name: 'My LinkedIn / opens a new tab', icon: <FaLinkedin />, link: 'https://fr.linkedin.com/in/arthur-macdonald-09b108266/en', external: true },
         { name: 'Send me an email', icon: <FaEnvelope />, link: 'mailto:arthur.macdonald.dev@gmail.com', external: false, small: true },
-        { name: 'Call me · [removed phone number]', icon: <FaPhone />, link: 'tel:[removed phone number]', external: false, small: true },
+        { name: 'Call me / [removed phone number]', icon: <FaPhone />, link: 'tel:[removed phone number]', external: false, small: true },
     ];
 
     const socialAnimation = (index: number) => ({
@@ -20,6 +20,7 @@ const Socials: React.FC<{ pageChanging: boolean }> = ({ pageChanging }) => {
 
     return (
         <Box
+            className="home-raised-section"
             sx={{
                 display: 'flex',
                 gap: { xs: 0.5, sm: 1, md: 2 },
