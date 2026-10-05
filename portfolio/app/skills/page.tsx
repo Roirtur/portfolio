@@ -1,9 +1,10 @@
 "use client";
 
 import { Box, Typography } from "@mui/material";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import events from "@/scripts/events";
 import Skills from "@/components/skills/Skills";
 import { MilkerFont, SofiaProFont } from "@/styles/theme";
@@ -29,11 +30,27 @@ const experience: Experience[] = [
 
 export default function SkillsPage() {
   const [changingRoute, setChangingRoute] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const [canScroll, setCanScroll] = useState(false);
+  const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handler = (route: string) => setChangingRoute(route !== "/skills");
     events.on("routeChanged", handler);
     return () => events.off("routeChanged", handler);
+  }, []);
+
+  useEffect(() => {
+    const content = contentRef.current;
+    if (!content) return;
+
+    const checkScroll = () => setCanScroll(content.scrollHeight > content.clientHeight + 1);
+    const observer = new ResizeObserver(checkScroll);
+    observer.observe(content);
+    if (content.firstElementChild) observer.observe(content.firstElementChild);
+    checkScroll();
+
+    return () => observer.disconnect();
   }, []);
 
   return (
@@ -68,7 +85,16 @@ export default function SkillsPage() {
           </Box>
         </motion.div>
       </Box>
-      <Box className="skills-content"><Skills pageChanging={changingRoute} /></Box>
+      <Box className="skills-content-panel">
+        <Box className="skills-content" ref={contentRef} onScroll={() => setHasScrolled(true)}>
+          <Skills pageChanging={changingRoute} />
+        </Box>
+        {canScroll && !hasScrolled && !changingRoute && (
+          <Box className="skills-scroll-hint" aria-hidden="true">
+            <Box className="skills-scroll-hint-icon"><ArrowDownwardIcon /></Box>
+          </Box>
+        )}
+      </Box>
     </motion.main>
   );
 }
