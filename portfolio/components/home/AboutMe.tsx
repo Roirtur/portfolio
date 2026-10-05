@@ -50,7 +50,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ pageChanging }) => {
                 }}
             >
                     <Box component="p" sx={{ m: 0, mb: 1.5 }}>
-                        I&apos;m Arthur, 22, and I&apos;m looking for a PhD in AI. I finished my master&apos;s in AI at <a
+                        I&apos;m Arthur, looking for a PhD in AI. I finished my master&apos;s in AI at <a
                             href="https://www.u-bordeaux.fr"
                             target="_blank"
                             rel="noopener noreferrer"
