@@ -3,7 +3,7 @@
 Static Next.js portfolio with three pages:
 
 - `/` introduces Arthur's AI thesis search, education, and contact links.
-- `/research` presents research interests and skills, with other skills second.
+- `/skills` presents research and AI skills first, with other skills second.
 - `/works` presents projects in a selectable wheel with details, code, slides, and reports.
 
 ## Add a project

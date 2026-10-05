@@ -78,15 +78,11 @@
     transform: translate(-50%, -50%);
 }
 
-.nav-item:hover .revert-colors {
+.nav-item:hover .revert-colors,
+.nav-item.active .revert-colors {
     width: calc(100% + 15px);
     height: calc(100% + 15px);
     transition: width 0.3s cubic-bezier(.33, 1, .68, 1) 0s, height 0s cubic-bezier(.33, 1, .68, 1)
-}
-
-.active .revert-colors {
-    width: calc(100% + 15px);
-    height: calc(100% + 15px);
 }
 
 .active .vertical {
