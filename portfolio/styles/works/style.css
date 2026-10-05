@@ -164,11 +164,13 @@
 
 .works-summary {
   margin-top: 2.5rem;
-  font-size: clamp(1.05rem, 1.35vw, 1.3rem);
-  font-weight: 700;
-  line-height: 1.4;
+  font-size: clamp(1rem, 1.15vw, 1.12rem);
+  font-weight: 400;
+  line-height: 1.5;
   color: #101214;
 }
+.works-summary p { margin: 0; }
+.works-summary p + p { margin-top: 1rem; }
 
 .works-topics {
   display: flex;

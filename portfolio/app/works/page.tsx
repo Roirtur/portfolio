@@ -92,7 +92,9 @@ export default function Works() {
             <Typography className="works-detail-kind" sx={{ fontFamily: MilkerFont.style.fontFamily }}>{activeProject.kind}</Typography>
             <OutlinedHeading component="h2" className="works-detail-title">{activeProject.title}</OutlinedHeading>
             <Typography className="works-detail-place" sx={{ fontFamily: MilkerFont.style.fontFamily }}>{activeProject.place}</Typography>
-            <Typography component="p" className="works-summary" sx={{ fontFamily: SofiaProFont.style.fontFamily }}>{activeProject.summary}</Typography>
+            <Box className="works-summary" sx={{ fontFamily: SofiaProFont.style.fontFamily }}>
+              {activeProject.summary.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+            </Box>
             <Box className="works-topics" sx={{ fontFamily: MilkerFont.style.fontFamily }}>
               <span className="works-section-label">Topics</span>
               <span>{activeProject.topics.join(" / ")}</span>

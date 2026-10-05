@@ -11,7 +11,9 @@ export default function ProjectWheel({ activeIndex, turn, onSelect, compact = fa
   const [stageSize, setStageSize] = useState(550);
   const stageRef = useRef<HTMLDivElement>(null);
   const count = projects.length;
-  const radius = Math.min(stageSize * 0.31, compact ? 120 : 225);
+  const radius = compact
+    ? Math.max(0, Math.min(stageSize * 0.37, 155, (stageSize - 112) / 2))
+    : Math.min(stageSize * 0.31, 225);
   const step = 360 / Math.min(count, 5);
 
   useEffect(() => {
