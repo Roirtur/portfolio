@@ -59,7 +59,7 @@ const AboutMe: React.FC<AboutMeProps> = ({ pageChanging }) => {
                             Université de Bordeaux
                         </a>.
                         I also completed an internship with the FLOWERS team at Inria Bordeaux,
-                        gained two years of software development experience, and spent two
+                        gained two years of software development experience while studying, and spent two
                         years tutoring programming students.
                     </Box>
                     <Box component="p" sx={{ m: 0, mb: 1.5 }}>
@@ -67,10 +67,6 @@ const AboutMe: React.FC<AboutMeProps> = ({ pageChanging }) => {
                         exploring new ideas, and figuring out how things work.
                         I'm particularly interested in AI, technology, and finding
                         creative, practical ways to solve challenging problems.
-                    </Box>
-                    <Box component="p" sx={{ m: 0 }}>
-                        Outside of work, I'm into music, making science easier to understand,
-                        video games, and sports.
                     </Box>
             </Box>
         </motion.div>
