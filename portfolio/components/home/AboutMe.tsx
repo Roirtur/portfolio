@@ -48,20 +48,29 @@ const AboutMe: React.FC<AboutMeProps> = ({ pageChanging }) => {
                 }}
             >
                     <Box component="p" sx={{ m: 0, mb: 1.5 }}>
-                        I studied AI at <a
+                        I recently graduated at the top of my class with a Master's
+                        in Artificial Intelligence from{" "}
+                        <a
                             href="https://www.u-bordeaux.fr"
                             target="_blank"
                             rel="noopener noreferrer"
                             style={{ color: "#0f402b", textDecoration: "underline" }}
                         >
                             Université de Bordeaux
-                        </a> and did a research internship with the FLOWERS team at Inria Bordeaux. I also have two years of software engineering experience and spent two years tutoring programming students.
+                        </a>.
+                        I also completed an internship with the FLOWERS team at Inria Bordeaux,
+                        gained two years of software development experience, and spent two
+                        years tutoring programming students.
                     </Box>
                     <Box component="p" sx={{ m: 0, mb: 1.5 }}>
-                       I&apos;ve just finished my master&apos;s in AI, and I&apos;m looking for a PhD around creativity, art, artificial life or evolutionary AI.
+                        I'm naturally curious and enjoy understanding complex problems,
+                        exploring new ideas, and figuring out how things work.
+                        I'm particularly interested in AI, technology, and finding
+                        creative, practical ways to solve challenging problems.
                     </Box>
                     <Box component="p" sx={{ m: 0 }}>
-                        Outside of work, I&apos;m into music, making science easier to understand, video games, and sports.
+                        Outside of work, I'm into music, making science easier to understand,
+                        video games, and sports.
                     </Box>
             </Box>
         </motion.div>
